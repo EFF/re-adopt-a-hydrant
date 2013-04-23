@@ -36,7 +36,7 @@ app.configure () =>
     app.use express.static(publicDirectory)
 
 app.get '/', (req, res)=>
-    res.render('index')
+    res.render('index', {apiKey: process.env.GMAPS_API_KEY})
 
 # app.get('/api/search', function(req, res){
 #     searchInteractor.search(req.query, function(err, results){

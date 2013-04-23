@@ -15,12 +15,16 @@ html(ng-app="reAdoptAHydrant", lang="en")
         script(src="//ajax.googleapis.com/ajax/libs/jquery/1.8.3/jquery.min.js")
         script(src="//ajax.googleapis.com/ajax/libs/angularjs/1.0.5/angular.min.js")
         script(src="//netdna.bootstrapcdn.com/twitter-bootstrap/2.2.2/js/bootstrap.min.js")
-        script(src="https://maps.googleapis.com/maps/api/js?key=AIzaSyDUvj9AhlNV9B5um5-pX8syXJJp5GU-5t4&sensor=false")
+        script(src="https://maps.googleapis.com/maps/api/js?key=#{apiKey}&sensor=false")
         script(src="/javascripts/app.js")
 
     body(ng-controller='Map')
+        header.appHeader  
+            .logoContainer.pull-left 
+                img(src="http://beerhold.it/225/50")
+                button.btn WTF
+                    i.icon-question-sign
+            .span8
         .container
-            header.appHeader
-                h1 reAdoptAHydrant
             map(id='map-canvas')
 
