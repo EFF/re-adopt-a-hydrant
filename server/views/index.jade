@@ -18,13 +18,18 @@ html(ng-app="reAdoptAHydrant", lang="en")
         script(src="https://maps.googleapis.com/maps/api/js?key=#{apiKey}&sensor=false")
         script(src="/javascripts/app.js")
 
-    body(ng-controller='Map')
-        header.appHeader  
+    body
+        div(ng-controller="fbCtrl", ng-init="init(#{fbAppId})", id="fb-root", ng-show="false")
+        header.appHeader(ng-controller="headerCtrl") 
             .logoContainer.pull-left 
                 img(src="http://beerhold.it/225/50")
                 button.btn WTF
                     i.icon-question-sign
-            .span8
+            .span9.pull-right
+                .span4
+                    button.btn(ng-click='fbLogin()') LOGIN WITH FACEBOOK
+                    button.btn LOGIN WITH TWITTy
+                .span4 some more information here and over more over there
         .container
             map(id='map-canvas')
 

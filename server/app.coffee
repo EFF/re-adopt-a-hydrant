@@ -35,8 +35,13 @@ app.configure () =>
     app.use stylus.middleware({src : publicDirectory, compile : compileStylus})
     app.use express.static(publicDirectory)
 
+locals =
+    apiKey : process.env.GMAPS_API_KEY
+    fbAppId : process.env.FB_APP_ID
+    appUrl : process.env.APP_URL
+
 app.get '/', (req, res)=>
-    res.render('index', {apiKey: process.env.GMAPS_API_KEY})
+    res.render('index', locals)
 
 # app.get('/api/search', function(req, res){
 #     searchInteractor.search(req.query, function(err, results){
