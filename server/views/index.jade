@@ -29,9 +29,8 @@ html(ng-app="reAdoptAHydrant", lang="en")
                     i.icon-question-sign
             .span9.pull-right
                 .span4
-                    button.btn(ng-click='fbLogin()') LOGIN WITH FACEBOOK
-                    button.btn LOGIN WITH TWITTy
-                .span4 some more information here and over more over there
-        .container
-            map(id='map-canvas')
+                    a.btn(href="/auth/facebook") Login with Facebook
+                    a.btn(href="/auth/twitter") LOGIN WITH TWITTy
+                .span4 USER INFORMATIONS
+        map(id='map-canvas')
 

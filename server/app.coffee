@@ -6,19 +6,39 @@ nib = require 'nib'
 fs = require 'fs'
 mongoose = require 'mongoose'
 lingua = require 'lingua'
+passport = require 'passport'
+SessionStore = require('session-mongoose')(express)
+strategyFactory = require './strategyFactory'
+
 app = express()
 
-compileStylus= (str, path)=>
+mongoose.connect process.env.MONGODB_URL
+models = fs.readdirSync path.join(__dirname, '/models')
+for model in models
+    require(path.join(path.join(__dirname, '/models'), model))
+
+User = mongoose.model 'User'
+
+compileStylus = (str, path)=>
     return stylus(str)
         .set('filename', path)
         .set('compress', true)
         .use(nib())
         .import('nib')
 
-mongoose.connect process.env.MONGODB_URL
-models = fs.readdirSync path.join(__dirname, '/models')
-for model in models
-    require(path.join(path.join(__dirname, '/models'), model))
+serialize = (user, done) =>
+    done null, user.id
+
+deserialize = (id, done) =>
+    User.findOne {id : id}, (err, user) =>
+        if err then done err, null
+        done null, user
+
+configurePassport = () =>
+    passport.use strategyFactory.create('facebook')
+    passport.use strategyFactory.create('twiter')
+    passport.serializeUser serialize
+    passport.deserializeUser deserialize
 
 app.configure () =>
     publicDirectory = path.join __dirname, '../public'
@@ -31,27 +51,29 @@ app.configure () =>
     app.use express.bodyParser()
     app.use express.methodOverride()
     app.use lingua(app, {storageKey: 'lang', defaultLocale: 'en', path: __dirname + '/i18n'})
-    app.use app.router
     app.use stylus.middleware({src : publicDirectory, compile : compileStylus})
     app.use express.static(publicDirectory)
+    app.use express.cookieParser(process.env.SESSION_SECRET)
+    store = new SessionStore(connection : mongoose.connection)
+    maxAge = 7 * 24 * 60 * 60 * 1000 #one week
+    app.use express.session({ store: store,cookie: { maxAge: maxAge }})
+    
+    app.use passport.initialize()
+    app.use passport.session()
+    app.use app.router
+
+    configurePassport()
 
 locals =
     apiKey : process.env.GMAPS_API_KEY
     fbAppId : process.env.FB_APP_ID
-    appUrl : process.env.APP_URL
 
 app.get '/', (req, res)=>
     res.render('index', locals)
 
-# app.get('/api/search', function(req, res){
-#     searchInteractor.search(req.query, function(err, results){
-#         if(err){
-#             res.json(err);
-#         }
-#         else{
-#             res.json({books: results});
-#         }
-#     });
-# });
+app.get '/auth/facebook', passport.authenticate('facebook')
+app.get '/auth/facebook/callback', passport.authenticate('facebook', ({ successRedirect: '/', failureRedirect: '/' }))
+app.get '/auth/twitter', passport.authenticate('twitter')
+app.get '/auth/twitter/callback', passport.authenticate('twitter', { successRedirect: '/', failureRedirect: '/' })
 
 app.listen process.env.PORT || 3000
