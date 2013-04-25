@@ -6,9 +6,9 @@ passport = require 'passport'
 
 module.exports = (app) ->
     app.get '/', websiteRoute.index
-    app.get '/home', sessionMiddleware.ensureLoggedIn(true), websiteRoute.home
-    app.get '/api/hydrants', sessionMiddleware.ensureLoggedIn(false), apiRoute.searchHydrants
-    app.post '/api/adopt', sessionMiddleware.ensureLoggedIn(false), apiRoute.adoptAnHydrant
+    app.get '/api/hydrants', sessionMiddleware.ensureLoggedIn, apiRoute.searchHydrants
+    app.post '/api/adopt', sessionMiddleware.ensureLoggedIn, apiRoute.adoptAnHydrant
+    app.get '/api/user', sessionMiddleware.ensureLoggedIn, apiRoute.user
     app.get '/auth/facebook', authenticationRoute.facebook
     app.get '/auth/facebook/callback', authenticationRoute.facebookCallback
     app.get '/auth/twitter', authenticationRoute.twitter

@@ -16,22 +16,18 @@ html(ng-app="reAdoptAHydrant", lang="en")
         script(src="//ajax.googleapis.com/ajax/libs/angularjs/1.0.5/angular.min.js")
         script(src="//netdna.bootstrapcdn.com/twitter-bootstrap/2.2.2/js/bootstrap.min.js")
         script(src="https://maps.googleapis.com/maps/api/js?key=#{apiKey}&sensor=false")
-        script(src="/javascripts/controllers/headerCtrl.js")
+        script(src="/javascripts/services/user_service.js")
+        script(src="/javascripts/controllers/header_controller.js")
         script(src="/javascripts/app.js")
-
     body
-        -if(accessToken)
-            script
-                window.accessToken = #{accessToken}
         header.appHeader(ng-controller="HeaderCtrl") 
             .logoContainer.pull-left 
                 img(src="http://beerhold.it/225/50")
                 button.btn WTF
                     i.icon-question-sign
             .span9.pull-right
-                .span4
+                .span4(ng-hide="user")
                     a.btn(href="/auth/facebook") Login with Facebook
                     a.btn(href="/auth/twitter") LOGIN WITH TWITTy
-                .span4 USER INFORMATIONS
+                .span4(ng-show="user") {{user.displayName}}
         map(id='map-canvas')
-

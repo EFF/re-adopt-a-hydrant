@@ -1,9 +1,6 @@
 class WebsiteRoute
     index: (req, res) ->
-        if req.user
-            res.redirect '/home'
-        else
-            res.render 'index'
+        res.render 'index'
     home: (req, res) ->
         res.render 'index'
 
