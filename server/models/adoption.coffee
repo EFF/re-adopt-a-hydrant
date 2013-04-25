@@ -10,6 +10,7 @@ schema =
     hydrantId :
         type : String
         required: true
+        index: true
 
 AdoptionSchema = new mongoose.Schema schema
 

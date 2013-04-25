@@ -30,7 +30,6 @@ class StrategyFactory
             else
                 profile.accessToken = token
                 newUser = new User profile
-                console.log newUser
                 newUser.save done
 
 module.exports = new StrategyFactory()

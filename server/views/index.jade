@@ -20,6 +20,9 @@ html(ng-app="reAdoptAHydrant", lang="en")
         script(src="/javascripts/app.js")
 
     body
+        -if(accessToken)
+            script
+                window.accessToken = #{accessToken}
         header.appHeader(ng-controller="HeaderCtrl") 
             .logoContainer.pull-left 
                 img(src="http://beerhold.it/225/50")

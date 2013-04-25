@@ -3,9 +3,10 @@ passport = require 'passport'
 strategyFactory = require './strategyFactory'
 stylus = require 'stylus'
 nib = require 'nib'
-fs = require 'fs'
 express = require 'express'
 path = require 'path'
+mongoose = require 'mongoose'
+SessionStore = require('session-mongoose')(express)
 
 sessionMiddleware = require './middlewares/session_middleware'
 localsMiddleware = require './middlewares/locals_middleware'
@@ -32,7 +33,9 @@ module.exports = (app) ->
         app.use lingua(app, {storageKey: 'lang', defaultLocale: 'en', path: __dirname + '/i18n'})
         app.use stylus.middleware({src : publicDirectory, compile : compileStylus})
         app.use express.static(publicDirectory)
-        app.use express.session()
+        store = new SessionStore(connection : mongoose.connection)
+        maxAge = 7 * 24 * 60 * 60 * 1000 #one week
+        app.use express.session({ store: store,cookie: { maxAge: maxAge }})
         
         app.use passport.initialize()
         passport.use strategyFactory.create('facebook')
