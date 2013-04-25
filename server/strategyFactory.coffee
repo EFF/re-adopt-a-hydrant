@@ -21,12 +21,14 @@ class StrategyFactory
         return @strategy
 
     verifyCallback: (token, tokenSecret, profile, done) =>
-        console.log token, tokenSecret
         User = mongoose.model 'User'
         User.findOne {id: profile.id}, (err, returningUser) =>
-            if err then done err, null
-            if returningUser then done null, returningUser
-            newUser = new User profile
-            newUser.save done
+            if err
+                done err, null
+            else if returningUser
+                done null, returningUser
+            else
+                newUser = new User profile
+                newUser.save done
 
 module.exports = new StrategyFactory()

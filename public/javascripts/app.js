@@ -1,7 +1,6 @@
 var app = angular.module('reAdoptAHydrant', []);
 
-app.controller('FbCtrl', ['$scope', facebookCtrl])
-.controller('HeaderCtrl', ['$scope', '$http', headerCtrl]);
+app.controller('HeaderCtrl', ['$scope', '$http', headerCtrl]);
 
 app.directive('map', function () {
     return {

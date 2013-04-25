@@ -72,8 +72,27 @@ app.get '/', (req, res)=>
     res.render('index', locals)
 
 app.get '/auth/facebook', passport.authenticate('facebook')
-app.get '/auth/facebook/callback', passport.authenticate('facebook', ({ successRedirect: '/', failureRedirect: '/' }))
+app.get '/auth/facebook/callback', (req, res, next) ->
+    cb = (err, user, info) ->
+        if err
+            next err
+        else if user
+            res.redirect "/#access_token=#{req.query.code}"
+        else
+            res.redirect '/'
+
+    passport.authenticate('facebook', cb)(req, res, next)
+
 app.get '/auth/twitter', passport.authenticate('twitter')
-app.get '/auth/twitter/callback', passport.authenticate('twitter', { successRedirect: '/', failureRedirect: '/' })
+app.get '/auth/twitter/callback', (req, res, next) ->
+    cb = (err, user, info) ->
+        if err
+            next err
+        else if user
+            res.redirect "/#access_token=#{req.query.code}"
+        else
+            res.redirect '/'
+
+    passport.authenticate('twitter', cb)(req, res, next)
 
 app.listen process.env.PORT || 3000

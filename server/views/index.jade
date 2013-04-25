@@ -16,12 +16,10 @@ html(ng-app="reAdoptAHydrant", lang="en")
         script(src="//ajax.googleapis.com/ajax/libs/angularjs/1.0.5/angular.min.js")
         script(src="//netdna.bootstrapcdn.com/twitter-bootstrap/2.2.2/js/bootstrap.min.js")
         script(src="https://maps.googleapis.com/maps/api/js?key=#{apiKey}&sensor=false")
-        script(src="/javascripts/controllers/facebookCtrl.js")
         script(src="/javascripts/controllers/headerCtrl.js")
         script(src="/javascripts/app.js")
 
     body
-        div(ng-controller="FbCtrl", ng-init="init(#{fbAppId})", id="fb-root", ng-show="false")
         header.appHeader(ng-controller="HeaderCtrl") 
             .logoContainer.pull-left 
                 img(src="http://beerhold.it/225/50")
