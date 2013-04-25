@@ -14,6 +14,10 @@ schema =
         type: String
         require: true
         trim: true
+    username:
+        type: String
+        require: true
+        trim: true
     name:
         familyName:
             type: String
@@ -30,6 +34,8 @@ schema =
     gender:
         type: String
     accessToken:
+        type: String
+    pictureUrl:
         type: String
 
 UserSchema = new mongoose.Schema schema

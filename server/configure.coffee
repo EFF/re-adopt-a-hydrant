@@ -9,7 +9,6 @@ mongoose = require 'mongoose'
 SessionStore = require('session-mongoose')(express)
 
 sessionMiddleware = require './middlewares/session_middleware'
-localsMiddleware = require './middlewares/locals_middleware'
 
 module.exports = (app) ->
     compileStylus = (str, path)->
@@ -21,6 +20,7 @@ module.exports = (app) ->
     app.configure () ->
         publicDirectory = path.join __dirname, '../public'
         app.set 'port', process.env.PORT || 3000
+        app.locals.apiKey = process.env.GMAPS_API_KEY
 
         app.set 'views', __dirname + '/views'
         app.set 'view engine', 'jade'
@@ -45,7 +45,6 @@ module.exports = (app) ->
         passport.deserializeUser sessionMiddleware.deserialize
         app.use passport.session()
 
-        app.use localsMiddleware.setLocals
         app.use app.router
 
         

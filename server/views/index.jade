@@ -20,14 +20,12 @@ html(ng-app="reAdoptAHydrant", lang="en")
         script(src="/javascripts/controllers/header_controller.js")
         script(src="/javascripts/app.js")
     body
-        header.appHeader(ng-controller="HeaderCtrl") 
-            .logoContainer.pull-left 
+        .panel(ng-controller="HeaderCtrl").pull-left
+            .logo
                 img(src="http://beerhold.it/225/50")
-                button.btn WTF
-                    i.icon-question-sign
-            .span9.pull-right
-                .span4(ng-hide="user")
-                    a.btn(href="/auth/facebook") Login with Facebook
-                    a.btn(href="/auth/twitter") LOGIN WITH TWITTy
-                .span4(ng-show="user") {{user.displayName}}
-        map(id='map-canvas')
+            div(ng-hide="user")
+                a.btn(href="/auth/facebook") Login with Facebook
+                a.btn(href="/auth/twitter") LOGIN WITH TWITTy
+            div(ng-show="user") {{user.name.givenName}}
+        .map-container
+            map(id='map-canvas')
