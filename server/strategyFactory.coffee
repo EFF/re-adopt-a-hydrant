@@ -28,7 +28,9 @@ class StrategyFactory
             else if returningUser
                 done null, returningUser
             else
+                profile.accessToken = token
                 newUser = new User profile
+                console.log newUser
                 newUser.save done
 
 module.exports = new StrategyFactory()

@@ -1,6 +1,5 @@
 mongoose = require 'mongoose'
 timestamp = require 'mongoose-troop/lib/timestamp'
-AdoptionSchema = require './adoption'
 
 schema = 
     provider:
@@ -30,8 +29,8 @@ schema =
             index: true
     gender:
         type: String
-    adoptions : 
-        type : [AdoptionSchema]
+    accessToken:
+        type: String
 
 UserSchema = new mongoose.Schema schema
 
