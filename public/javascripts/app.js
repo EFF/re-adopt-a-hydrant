@@ -1,7 +1,7 @@
 var app = angular.module('reAdoptAHydrant', []);
 
 app.factory('UserService', ['$http', UserService])
-app.controller('HeaderCtrl', ['$scope', 'UserService', HeaderCtrl]);
+app.controller('PanelCtrl', ['$scope', 'UserService', '$location', PanelCtrl]);
 
 app.directive('map', function () {
     return {

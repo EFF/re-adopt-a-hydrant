@@ -1,5 +1,11 @@
 body{margin:0;background-color:#86bb5d}
-.panel{height:100%;width:200px}
-.logoContainer{text-align:center}
+.panel{height:100%;width:200px;}
+.panel .logo{margin-top:20px}
+.panel .description{width:80%;margin:20px auto;text-align:justify}
+.panel .login-form{text-align:center;}
+.panel .login-form .btn{width:80%}
+.panel .login-form .btn-twitter{margin-top:20px}
+.panel .user-info{width:80%;margin:auto}
+.panel footer{position:absolute;bottom:0}
 .map-container{height:100%}
 #map-canvas{position:absolute;width:100%;height:100%}

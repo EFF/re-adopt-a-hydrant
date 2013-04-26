@@ -15,17 +15,21 @@ html(ng-app="reAdoptAHydrant", lang="en")
         script(src="//ajax.googleapis.com/ajax/libs/jquery/1.8.3/jquery.min.js")
         script(src="//ajax.googleapis.com/ajax/libs/angularjs/1.0.5/angular.min.js")
         script(src="//netdna.bootstrapcdn.com/twitter-bootstrap/2.2.2/js/bootstrap.min.js")
-        script(src="https://maps.googleapis.com/maps/api/js?key=#{apiKey}&sensor=false")
+        script(src="//maps.googleapis.com/maps/api/js?key=#{apiKey}&sensor=false")
+
         script(src="/javascripts/services/user_service.js")
-        script(src="/javascripts/controllers/header_controller.js")
+        script(src="/javascripts/controllers/panel_controller.js")
         script(src="/javascripts/app.js")
     body
-        .panel(ng-controller="HeaderCtrl").pull-left
+        .panel(ng-controller="PanelCtrl").pull-left
             .logo
-                img(src="http://beerhold.it/225/50")
-            div(ng-hide="user")
-                a.btn(href="/auth/facebook") Login with Facebook
-                a.btn(href="/auth/twitter") LOGIN WITH TWITTy
-            div(ng-show="user") {{user.name.givenName}}
+                img(src="http://placehold.it/200x150")
+            .description You can adopt an hydrant. You'll become responsibile to make sure it's always of it. You can either shovel after snowing or call the authoritizes so they can come and take care of it. 
+            .login-form(ng-hide="user")
+                a.btn.btn-facebook(href="/auth/facebook") Login with Facebook
+                a.btn.btn-twitter(href="/auth/twitter") Login with Twitter
+            .user-info(ng-show="user") {{user.name.givenName}}
+            footer
+                img(src="http://placehold.it/200x50")
         .map-container
             map(id='map-canvas')
