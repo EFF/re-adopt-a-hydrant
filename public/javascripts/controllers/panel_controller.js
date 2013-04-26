@@ -3,12 +3,4 @@ function PanelCtrl($scope, UserService, $location){
     UserService.getUser(function(err, user){
         $scope.user = user;
     });
-
-    $scope.loginFacebook = function(){
-        $location.url($location.absUrl('/auth/facebook'));
-    }
-
-    $scope.loginTwitter = function(){
-        $location.url($location.absUrl('/auth/twitter'));
-    }
 }

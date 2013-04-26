@@ -8,7 +8,6 @@ function UserService($http){
             }
             $http(config)
                 .success(function(data, status, headers, config){
-                    console.log(data);
                     callback(null, data);
                 })
                 .error(function(data, status, headers, config){
