@@ -1,3 +1,0 @@
-function headerCtrl($scope, $http){
-
-};
