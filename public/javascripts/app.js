@@ -8,7 +8,7 @@ reAdoptAHydrant.Application.prototype.start = function() {
 
     var app = angular.module('reAdoptAHydrant', []);
 
-    app.controller('PanelCtrl', ['$scope', reAdoptAHydrant.controllers.Panel]);
+    app.controller('panelCtrl', ['$scope', reAdoptAHydrant.controllers.Panel]);
 
     app.directive('map', function () {
         return {
