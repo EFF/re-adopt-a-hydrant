@@ -1,57 +1,20 @@
-require 'coffee-script'
 path = require 'path'
 express = require 'express'
-stylus = require 'stylus'
-nib = require 'nib'
 fs = require 'fs'
 mongoose = require 'mongoose'
-lingua = require 'lingua'
-app = express()
 
-compileStylus= (str, path)=>
-    return stylus(str)
-        .set('filename', path)
-        .set('compress', true)
-        .use(nib())
-        .import('nib')
+app = express()
 
 mongoose.connect process.env.MONGODB_URL
 models = fs.readdirSync path.join(__dirname, '/models')
 for model in models
     require(path.join(path.join(__dirname, '/models'), model))
 
-app.configure () =>
-    publicDirectory = path.join __dirname, '../public'
+require('./configure')(app)
+require('./routes_map')(app)
 
-    app.set 'views', __dirname + '/views'
-    app.set 'view engine', 'jade'
-
-    app.disable 'x-powered-by'    
-    app.use express.favicon()
-    app.use express.bodyParser()
-    app.use express.methodOverride()
-    app.use lingua(app, {storageKey: 'lang', defaultLocale: 'en', path: __dirname + '/i18n'})
-    app.use app.router
-    app.use stylus.middleware({src : publicDirectory, compile : compileStylus})
-    app.use express.static(publicDirectory)
-
-locals =
-    apiKey : process.env.GMAPS_API_KEY
-    fbAppId : process.env.FB_APP_ID
-    appUrl : process.env.APP_URL
-
-app.get '/', (req, res)=>
-    res.render('index', locals)
-
-# app.get('/api/search', function(req, res){
-#     searchInteractor.search(req.query, function(err, results){
-#         if(err){
-#             res.json(err);
-#         }
-#         else{
-#             res.json({books: results});
-#         }
-#     });
-# });
-
-app.listen process.env.PORT || 3000
+app.listen app.get('port'), (err) ->
+    if err
+        throw err
+    else
+        console.log "app started on port #{app.get('port')}"
