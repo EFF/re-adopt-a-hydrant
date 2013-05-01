@@ -11,6 +11,7 @@ html(ng-app="reAdoptAHydrant", lang="en")
 
         link(href="//netdna.bootstrapcdn.com/twitter-bootstrap/2.2.2/css/bootstrap-combined.min.css", rel="stylesheet")
         link(rel="stylesheet", href="/stylesheets/style.css")
+        link(href="https://raw.github.com/samcollins/css-social-buttons/master/css/zocial.css", rel="stylesheet")
 
         script(src="//ajax.googleapis.com/ajax/libs/jquery/1.8.3/jquery.min.js")
         script(src="//ajax.googleapis.com/ajax/libs/angularjs/1.0.5/angular.min.js")
@@ -32,13 +33,18 @@ html(ng-app="reAdoptAHydrant", lang="en")
     body
         .panel(ng-controller="panelCtrl").pull-left
             .logo
-                img(src="http://placehold.it/200x150")
-            .description You can adopt an hydrant. You'll become responsibile to make sure it's always of it. You can either shovel after snowing or call the authoritizes so they can come and take care of it. 
+                img(src="images/logo.png", alt="logo re-Adopt-A-Hydrant")
+            .descriptionContainer
+                .description By adopting a hydrant, you'll become responsibile of it and give it your love! You can either shovel after snowing or contact the authoritizes so they can come and take care of it if you're not avalaible. 
             .login-form(ng-hide="user")
-                a.btn.btn-facebook(href="/auth/facebook") Login with Facebook
-                a.btn.btn-twitter(href="/auth/twitter") Login with Twitter
+                a.zocial.facebook(href="/auth/facebook") Login with Facebook
+                .splitter or
+                a.zocial.twitter(href="/auth/twitter") Login with Twitter
             .user-info(ng-show="user") {{user.name.givenName}}
             footer
-                img(src="http://placehold.it/200x50")
+                .socialLinks
+                    a.facebook(href="https://www.facebook.com/OpenifyIt")
+                    a.twitter(href="https://twitter.com/OpenifyIt")
+                    a.github(href="https://github.com/OpenifyIt")
         .map-container
             map(id='map-canvas')
