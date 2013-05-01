@@ -1,4 +1,6 @@
-function UserService($http){
+goog.provide('reAdoptAHydrant.services.UserService');
+
+reAdoptAHydrant.services.UserService = function($http){
     return {
         getUser:function(callback){
             config = {
