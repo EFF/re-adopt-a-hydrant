@@ -13,3 +13,5 @@ module.exports = (app) ->
     app.get '/auth/facebook/callback', authenticationRoute.facebookCallback
     app.get '/auth/twitter', authenticationRoute.twitter
     app.get '/auth/twitter/callback', authenticationRoute.twitterCallback
+
+    app.get 'user/:id/adoptions', sessionMiddleware.ensureLoggedIn, apiRoute.userAdoptions

@@ -19,8 +19,11 @@ module.exports = (app) ->
             .import('nib')
     app.configure () ->
         publicDirectory = path.join __dirname, '../public'
-        app.set 'port', process.env.PORT || 3000
+
+        app.locals.isDev = (app.settings.env == "development")
         app.locals.apiKey = process.env.GMAPS_API_KEY
+
+        app.set 'port', process.env.PORT || 3000
 
         app.set 'views', __dirname + '/views'
         app.set 'view engine', 'jade'
@@ -47,4 +50,9 @@ module.exports = (app) ->
 
         app.use app.router
 
-        
+
+    app.configure 'development', () ->
+        app.use express.logger('dev')
+        app.use express.errorHandler({ dumpExceptions: true, showStack: true })
+        closureDirectory = path.join __dirname, '../vendors/closure-library/closure/goog'
+        app.use('/closure', express.static(closureDirectory))

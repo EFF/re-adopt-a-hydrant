@@ -11,25 +11,47 @@ html(ng-app="reAdoptAHydrant", lang="en")
 
         link(href="//netdna.bootstrapcdn.com/twitter-bootstrap/2.2.2/css/bootstrap-combined.min.css", rel="stylesheet")
         link(rel="stylesheet", href="/stylesheets/style.css")
+        link(href="https://raw.github.com/samcollins/css-social-buttons/master/css/zocial.css", rel="stylesheet")
 
         script(src="//ajax.googleapis.com/ajax/libs/jquery/1.8.3/jquery.min.js")
         script(src="//ajax.googleapis.com/ajax/libs/angularjs/1.0.5/angular.min.js")
         script(src="//netdna.bootstrapcdn.com/twitter-bootstrap/2.2.2/js/bootstrap.min.js")
-        script(src="//maps.googleapis.com/maps/api/js?key=#{apiKey}&sensor=false")
+        script(src="https://maps.googleapis.com/maps/api/js?key=#{apiKey}&sensor=false")
 
-        script(src="/javascripts/services/user_service.js")
-        script(src="/javascripts/controllers/panel_controller.js")
-        script(src="/javascripts/app.js")
+        if isDev
+            script(type='text/javascript', src='/closure/base.js')
+            script(type='text/javascript', src='/javascripts/deps.js')
+        else
+            script(type='text/javascript', src='/javascripts/compiled.js')
+
+        script(type='text/javascript')
+            goog.require('reAdoptAHydrant.Application');
+        script(type='text/javascript')
+            var app = new reAdoptAHydrant.Application();
+            app.start();        
+
     body
-        .panel(ng-controller="PanelCtrl").pull-left
+        .panel(ng-controller="panelCtrl").pull-left
             .logo
-                img(src="http://placehold.it/200x150")
-            .description You can adopt an hydrant. You'll become responsibile to make sure it's always of it. You can either shovel after snowing or call the authoritizes so they can come and take care of it. 
+                img(src="images/logo.png", alt="logo re-Adopt-A-Hydrant")
+            .descriptionContainer
+                .description By adopting a hydrant, you'll become responsibile of it. You'll then need to give all your love by either shoveling after it snows or contact the authorities so they can come and take care of it.
             .login-form(ng-hide="user")
-                a.btn.btn-facebook(href="/auth/facebook") Login with Facebook
-                a.btn.btn-twitter(href="/auth/twitter") Login with Twitter
-            .user-info(ng-show="user") {{user.name.givenName}}
+                a.zocial.facebook(href="/auth/facebook") Login with Facebook
+                .splitter or
+                a.zocial.twitter(href="/auth/twitter") Login with Twitter
+            .userInfoContainer(ng-show="user") 
+                .userInfo
+                    .text Hi, 
+                    h3 {{user.name.givenName}}!
+                    .text You have adopted x fire hydrants, would you like to adopt more ?
             footer
-                img(src="http://placehold.it/200x50")
+                .by
+                    p Developped by your friends @
+                        a(href"http://openify.it") Openify.it
+                .socialLinks
+                    a.facebook(href="https://www.facebook.com/OpenifyIt")
+                    a.twitter(href="https://twitter.com/OpenifyIt")
+                    a.github(href="https://github.com/OpenifyIt")
         .map-container
             map(id='map-canvas')
