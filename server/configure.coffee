@@ -56,6 +56,3 @@ module.exports = (app) ->
         app.use express.errorHandler({ dumpExceptions: true, showStack: true })
         closureDirectory = path.join __dirname, '../vendors/closure-library/closure/goog'
         app.use('/closure', express.static(closureDirectory))
-
-
-        
