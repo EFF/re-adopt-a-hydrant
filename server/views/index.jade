@@ -40,8 +40,15 @@ html(ng-app="reAdoptAHydrant", lang="en")
                 a.zocial.facebook(href="/auth/facebook") Login with Facebook
                 .splitter or
                 a.zocial.twitter(href="/auth/twitter") Login with Twitter
-            .user-info(ng-show="user") {{user.name.givenName}}
+            .userInfoContainer(ng-show="user") 
+                .userInfo
+                    .text Hi, 
+                    h3 {{user.name.givenName}}!
+                    .text You have adopted x fire hydrants, would you like to adopt more ?
             footer
+                .by
+                    p Developped by your friends @
+                        a(href"http://openify.it") Openify.it
                 .socialLinks
                     a.facebook(href="https://www.facebook.com/OpenifyIt")
                     a.twitter(href="https://twitter.com/OpenifyIt")
