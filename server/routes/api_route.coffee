@@ -1,18 +1,23 @@
 adoptionInteractor = require '../interactors/adoption_interactor'
+hydrantInteractor = require '../interactors/hydrant_interactor'
 
 class ApiRoute
     user: (req, res) ->
         res.json req.user
 
     userAdoptions: (req, res) ->
-        adoption_interactor.getUserAdoptions req.params.id, (err, data) =>
+        adoptionInteractor.getUserAdoptions req.params.id, (err, data) =>
             if err
                 res.json err
             else
                 res.json data
 
     searchHydrants: (req, res) ->
-        res.json {toto: 'hello'}
+        hydrantInteractor.search req.query, (err, data) =>
+            if err
+                res.json err
+            else
+                res.json data
         
     adoptAnHydrant: (req, res) ->
         res.json {toto: 'hello'}

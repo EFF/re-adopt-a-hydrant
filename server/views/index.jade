@@ -48,10 +48,10 @@ html(ng-app="reAdoptAHydrant", lang="en")
             footer
                 .by
                     p Developped by your friends @
-                        a(href"http://openify.it") Openify.it
+                        a(href="http://openify.it") Openify.it
                 .socialLinks
                     a.facebook(href="https://www.facebook.com/OpenifyIt")
                     a.twitter(href="https://twitter.com/OpenifyIt")
                     a.github(href="https://github.com/OpenifyIt")
-        .map-container
+        .map-container(ng-controller="mapCtrl")
             map(id='map-canvas')
