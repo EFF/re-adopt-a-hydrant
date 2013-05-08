@@ -1,4 +1,5 @@
-ObjectId = require('mongoose').Types.ObjectId
+mongoose = require 'mongoose'
+ObjectId = mongoose.Types.ObjectId
 
 class AdoptionInteractor
     getUserAdoptions : (userId, callback) ->
@@ -7,5 +8,16 @@ class AdoptionInteractor
 
         Adoption = mongoose.connection.model 'Adoption'
         Adoption.find {'userId': userId}, callback
+
+    getByHydrantId: (id, callback) =>
+        Adoption = mongoose.connection.model 'Adoption'
+        Adoption.findOne {'hydrantId': id}, callback
+
+    adoptHydrant: (userId, hydrantId, callback) =>
+        Adoption = mongoose.connection.model 'Adoption'
+        adoption = new Adoption()
+        adoption.userId = userId
+        adoption.hydrantId = hydrantId
+        adoption.save callback
 
 module.exports = new AdoptionInteractor()

@@ -20,6 +20,11 @@ class ApiRoute
                 res.json data
         
     adoptAnHydrant: (req, res) ->
-        res.json {toto: 'hello'}
+        adoptionInteractor.adoptHydrant req.body.userId, req.body.hydrantId, (err, data) =>
+            console.log err, data
+            if err
+                res.json 500, err
+            else
+                res.json data
 
 module.exports = new ApiRoute()
