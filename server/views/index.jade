@@ -46,12 +46,13 @@ html(ng-app="reAdoptAHydrant", lang="en")
                     h3 {{user.name.givenName}}!
                     .text You have adopted x fire hydrants, would you like to adopt more ?
             footer
-                .by
-                    p Developped by your friends @
-                        a(href="http://openify.it") Openify.it
-                .socialLinks
-                    a.facebook(href="https://www.facebook.com/OpenifyIt")
-                    a.twitter(href="https://twitter.com/OpenifyIt")
-                    a.github(href="https://github.com/OpenifyIt")
+                .footer-content
+                    .by
+                        p Developped by your friends @
+                            a(href="http://openify.it") Openify.it
+                    .socialLinks
+                        a.facebook(href="https://www.facebook.com/OpenifyIt")
+                        a.twitter(href="https://twitter.com/OpenifyIt")
+                        a.github(href="https://github.com/OpenifyIt")
         .map-container(ng-controller="mapCtrl")
             map(id='map-canvas')

@@ -37,11 +37,11 @@ reAdoptAHydrant.controllers.Map = function($scope, HydrantService, UserService){
         }
     });
 
-    var createMarker = function(id, adopted, lat, lon){
+    var createMarker = function(id, adopter, lat, lon){
         var icon = {
             anchor: new google.maps.Point(16,39),
             size: new google.maps.Size(33,39),
-            url: (adopted) ? '/images/adoptedHydrantMarker.png' : '/images/normalHydrantMarker.png'
+            url: (adopter) ? '/images/adoptedHydrantMarker.png' : '/images/normalHydrantMarker.png'
         };
         var shadow = {
             anchor: new google.maps.Point(6,24),
@@ -59,29 +59,38 @@ reAdoptAHydrant.controllers.Map = function($scope, HydrantService, UserService){
 
         var marker = new google.maps.Marker(markerOptions);
         marker._id = id;
+        marker._adopter = adopter;
         google.maps.event.addListener(marker, 'click', function(){
             var _this = this;
-            UserService.getUser(function(err, user){
-                if(err){
-                    console.log(err);
-                }
-                else if(user){
-                    var confirmation = confirm('Do you want to adopt this hydrant?');
-                    if(confirmation){
-                        HydrantService.adopt(user._id, _this._id, function(err, callback){
-                            if(err){
-                                console.log(err);
-                            }
-                            else{
-                                _this.setIcon('/images/adoptedHydrantMarker.png');
-                            }
-                        });
+            if(this._adopter){
+                var infowindow = new google.maps.InfoWindow({
+                    content: 'Hello' + this._adopter
+                });
+                infowindow.open(map,_this);
+            }
+            else{
+                UserService.getUser(function(err, user){
+                    if(err){
+                        console.log(err);
                     }
-                }
-                else{
-                    alert('You must be logged in to adopt an hydrant.');
-                }
-            });
+                    else if(user){
+                        var confirmation = confirm('Do you want to adopt this hydrant?');
+                        if(confirmation){
+                            HydrantService.adopt(user._id, _this._id, function(err, callback){
+                                if(err){
+                                    console.log(err);
+                                }
+                                else{
+                                    _this.setIcon('/images/adoptedHydrantMarker.png');
+                                }
+                            });
+                        }
+                    }
+                    else{
+                        alert('You must be logged in to adopt an hydrant.');
+                    }
+                });
+            }
         });
         return marker;
     };
