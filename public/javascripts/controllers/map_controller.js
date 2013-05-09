@@ -63,13 +63,21 @@ reAdoptAHydrant.controllers.Map = function($scope, HydrantService, UserService){
         google.maps.event.addListener(marker, 'click', function(){
             var _this = this;
             if(this._adopter){
-                var infowindow = new google.maps.InfoWindow({
-                    content: 'Hello' + this._adopter
+                UserService.getUserById(this._adopter, function(err, user){
+                    if(err){
+                        console.log(err);
+                    }
+                    else{
+                        var content = "<img class='pull-left' src='http://graph.facebook.com/" + user.id + "/picture'><p>Adopted by <strong>" + user.displayName + "</strong>";
+                        var infowindow = new google.maps.InfoWindow({
+                            content: content
+                        });
+                        infowindow.open(map,_this);
+                    }
                 });
-                infowindow.open(map,_this);
             }
             else{
-                UserService.getUser(function(err, user){
+                UserService.getCurrentUser(function(err, user){
                     if(err){
                         console.log(err);
                     }

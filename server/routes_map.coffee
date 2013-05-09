@@ -8,10 +8,11 @@ module.exports = (app) ->
     app.get '/', websiteRoute.index
     app.get '/api/hydrants', sessionMiddleware.ensureLoggedIn, apiRoute.searchHydrants
     app.post '/api/adopt', sessionMiddleware.ensureLoggedIn, apiRoute.adoptAnHydrant
-    app.get '/api/user', sessionMiddleware.ensureLoggedIn, apiRoute.user
+    app.get '/api/users/me', sessionMiddleware.ensureLoggedIn, apiRoute.me
     app.get '/auth/facebook', authenticationRoute.facebook
     app.get '/auth/facebook/callback', authenticationRoute.facebookCallback
     app.get '/auth/twitter', authenticationRoute.twitter
     app.get '/auth/twitter/callback', authenticationRoute.twitterCallback
 
-    app.get 'user/:id/adoptions', sessionMiddleware.ensureLoggedIn, apiRoute.userAdoptions
+    app.get '/api/users/:id', apiRoute.user
+    app.get '/api/users/:id/adoptions', sessionMiddleware.ensureLoggedIn, apiRoute.userAdoptions

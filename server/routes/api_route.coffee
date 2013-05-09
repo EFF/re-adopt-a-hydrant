@@ -1,30 +1,27 @@
+userInteractor = require '../interactors/user_interactor'
 adoptionInteractor = require '../interactors/adoption_interactor'
 hydrantInteractor = require '../interactors/hydrant_interactor'
 
 class ApiRoute
-    user: (req, res) ->
+    me: (req, res) =>
         res.json req.user
 
-    userAdoptions: (req, res) ->
-        adoptionInteractor.getUserAdoptions req.params.id, (err, data) =>
-            if err
-                res.json err
-            else
-                res.json data
+    user: (req, res) =>
+        userInteractor.getById req.params.id, @apiCallback.bind(@, res)
 
-    searchHydrants: (req, res) ->
-        hydrantInteractor.search req.query, (err, data) =>
-            if err
-                res.json err
-            else
-                res.json data
-        
-    adoptAnHydrant: (req, res) ->
-        adoptionInteractor.adoptHydrant req.body.userId, req.body.hydrantId, (err, data) =>
-            console.log err, data
-            if err
-                res.json 500, err
-            else
-                res.json data
+    userAdoptions: (req, res) =>
+        adoptionInteractor.getUserAdoptions req.params.id, @apiCallback.bind(@, res)
+
+    searchHydrants: (req, res) =>
+        hydrantInteractor.search req.query, @apiCallback.bind(@, res)
+
+    adoptAnHydrant: (req, res) =>
+        adoptionInteractor.adoptHydrant req.body.userId, req.body.hydrantId, @apiCallback.bind(@, res)
+
+    apiCallback: (res, err, data) =>
+        if err
+            res.json 500, err
+        else
+            res.json data
 
 module.exports = new ApiRoute()
