@@ -14,4 +14,8 @@ reAdoptAHydrant.controllers.Panel = function($scope, UserService, $location){
             }
         });
     });
+
+    $scope.$on('adoption', function(eventArg, userId, hydrantId){
+        $scope.adoptionsCount++;
+    });
 };

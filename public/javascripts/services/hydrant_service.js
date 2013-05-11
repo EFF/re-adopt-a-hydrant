@@ -22,6 +22,7 @@ reAdoptAHydrant.services.HydrantService = function($rootScope, $http){
         adopt: function(userId, hydrantId, callback){
             $http.post('/api/adopt', {userId: userId, hydrantId: hydrantId})
                 .success(function(data, status, headers, config){
+                    $rootScope.$broadcast('adoption', userId, hydrantId);
                     callback(null, data);
                 })
                 .error(function(data, status, headers, config){
