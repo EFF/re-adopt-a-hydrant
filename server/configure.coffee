@@ -29,7 +29,6 @@ module.exports = (app) ->
         app.set 'view engine', 'jade'
 
         app.disable 'x-powered-by' 
-        app.use express.logger('dev')   
         app.use express.favicon()
         app.use express.bodyParser()
         app.use express.methodOverride()
