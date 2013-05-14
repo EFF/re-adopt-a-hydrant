@@ -1,5 +1,8 @@
 ![reAdoptAHydrant logo](https://raw.github.com/OpenifyIt/reAdoptAHydrant/master/public/images/logo.png "reAdoptAHydrant")
 
+[![Dependency Status](https://gemnasium.com/OpenifyIt/reAdoptAHydrant.png)](https://gemnasium.com/OpenifyIt/reAdoptAHydrant)
+[![Build Status](https://travis-ci.org/OpenifyIt/reAdoptAHydrant.png)](https://travis-ci.org/OpenifyIt/reAdoptAHydrant)
+
 This project is a remake of the [Adopt-a-Hydrant](http://example.com/) built in Boston by the city of Boston. For a better description [take a look here](http://commons.codeforamerica.org/apps/adopt-hydrant "Adopt-a-Hydrant description")
 
 This project use the open-data published by the city of Québec in Canada and serve as a demo for the platform [Openify.it](http://www.openify.it).
