@@ -47,6 +47,10 @@ module.exports = (app) ->
         passport.deserializeUser sessionMiddleware.deserialize
         app.use passport.session()
 
+        app.use (req, res, next) =>
+            console.log req.path
+            next()
+
         app.use app.router
 
 
