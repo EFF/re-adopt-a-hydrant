@@ -16,7 +16,7 @@ files = [
   {pattern: 'tests/unit/deps.js', include: true, watched: true, served: true},
   {pattern: 'public/javascripts/**/*.js', include: false, watched: true, served: true},
   {pattern: 'tests/unit/*.test.js'},
-  {pattern: 'node_modules/expect.js/expect.js'}
+  {pattern: 'node_modules/chai/chai.js'}
 ];
 
 

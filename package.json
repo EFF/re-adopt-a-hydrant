@@ -18,7 +18,7 @@
     "mongoose-troop": "0.0.x"
   },
   "devDependencies": {
-    "expect.js": "0.1.x",
+    "chai": "1.6.x",
     "karma": "0.8.5"
   },
   "scripts": {
