@@ -2,13 +2,19 @@ chai = require 'chai'
 assert = chai.assert
 sinon = require 'sinon'
 mongoose = require 'mongoose'
+ObjectId = mongoose.Types.ObjectId
 
 describe 'interactors', () ->
     beforeEach () ->
-        @fakeModel = 
-            findById: sinon.stub().yields()
-            find: sinon.stub().yields()
-            findOne: sinon.stub().yields()
+        @objectId = new ObjectId()
+        @objectIdAsString = @objectId.toString()
+        
+        @fakeModel = sinon.spy()
+        @fakeModel.findById = sinon.stub().yields()
+        @fakeModel.find = sinon.stub().yields()
+        @fakeModel.findOne = sinon.stub().yields()
+        @fakeModel.prototype.save = sinon.stub().yields()
+
         sinon.stub mongoose, 'model', () =>
             return @fakeModel
 
@@ -21,20 +27,41 @@ describe 'interactors', () ->
 
         it 'should get a user by id', () ->
             callback = sinon.spy()
-            userId = 'ajkhsdfg2736dakjhsdg28'
-            @userInteractor.getById userId, callback
+            @userInteractor.getById @objectIdAsString, callback
 
-            assert.isTrue callback.calledOnce
-            assert.isTrue @fakeModel.findById.calledOnce
-            assert.isTrue @fakeModel.findById.calledWith(userId, 'id username displayName name', callback)
+            assert.isTrue callback.calledOnce, 'callback should be called'
+            assert.isTrue @fakeModel.findById.calledOnce, 'findById should be called'
+            assert.isTrue @fakeModel.findById.calledWith(@objectIdAsString, 'id username displayName name', callback), 'findById should be called with the right arguments'
 
     describe 'AdoptionInteractor', () ->
         beforeEach () ->
             @adoptionInteractor = require '../../server/interactors/adoption_interactor'
 
-        it 'should getUserAdoptions'
-        it 'should getByHydrantId'
-        it 'should adoptHydrant'
+        it 'should getUserAdoptions', () ->
+            callback = sinon.spy()
+            @adoptionInteractor.getUserAdoptions @objectIdAsString, callback
+
+            assert.isTrue callback.calledOnce, 'callback should be called'
+            assert.isTrue @fakeModel.find.calledOnce, 'find should be called'
+            assert.isTrue @fakeModel.find.calledWith({userId: @objectId}, callback), 'find should be called with the right arguments'
+
+        it 'should getAdoptionByHydrantId', () ->
+            callback = sinon.spy()
+            @adoptionInteractor.getAdoptionByHydrantId @objectIdAsString, callback
+
+            assert.isTrue callback.calledOnce, 'callback should be called'
+            assert.isTrue @fakeModel.findOne.calledOnce, 'findOne should be called'
+            assert.isTrue @fakeModel.findOne.calledWith({hydrantId: @objectIdAsString}, callback), 'findOne should be called with the right arguments'
+
+        it 'should adoptHydrant', () ->
+            callback = sinon.spy()
+            @adoptionInteractor.adoptHydrant @objectIdAsString, @objectIdAsString, callback
+
+            assert.isTrue callback.calledOnce, 'callback should be called'
+            assert.isTrue @fakeModel.calledOnce, 'constructor should be called'
+            assert.equal @fakeModel.prototype.save.firstCall.thisValue.userId, @objectIdAsString, 'adoption.userId should be set'
+            assert.equal @fakeModel.prototype.save.firstCall.thisValue.hydrantId, @objectIdAsString, 'adoption.hydrantId should be set'
+            assert.isTrue @fakeModel.prototype.save.calledWith(callback), 'save should be called with the right arguments'
 
     describe 'HydrantInteractor', () ->
         beforeEach () ->
