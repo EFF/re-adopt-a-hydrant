@@ -7,7 +7,7 @@ files = [
   {pattern: '../../vendors/closure-library/closure/**/*.js', included: false, watched: false, served: true},
   {pattern: '../unit/deps.js', include: true, watched: true, served: true},
   {pattern: '../../public/javascripts/**/*.js', include: false, watched: true, served: true},
-  {pattern: '../unit/*.test.*'},
+  {pattern: '../frontend-unit/*.test.*'},
   {pattern: '../../node_modules/chai/chai.js'}
 ];
 
