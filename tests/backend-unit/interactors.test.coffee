@@ -61,6 +61,7 @@ describe 'interactors', () ->
             assert.isTrue @fakeModel.calledOnce, 'constructor should be called'
             assert.equal @fakeModel.prototype.save.firstCall.thisValue.userId, @objectIdAsString, 'adoption.userId should be set'
             assert.equal @fakeModel.prototype.save.firstCall.thisValue.hydrantId, @objectIdAsString, 'adoption.hydrantId should be set'
+            assert.isTrue @fakeModel.prototype.save.calledOnce, 'should be called once'
             assert.isTrue @fakeModel.prototype.save.calledWith(callback), 'save should be called with the right arguments'
 
     describe 'HydrantInteractor', () ->
@@ -69,4 +70,4 @@ describe 'interactors', () ->
 
         it 'should search'
         it 'should _createQuery'
-        it 'should do something to refactor'
+        it 'should do something to refactor cause the code is shit'
