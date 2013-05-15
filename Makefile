@@ -1,5 +1,19 @@
+MOCHA_REPORTER=list
+TIMEOUT=10000
+
 compile-javascript:
 	./compile_javascript.sh
+
+test-backend-unit:
+	@NODE_ENV=test \
+	./node_modules/.bin/mocha \
+		--recursive \
+		--reporter $(MOCHA_REPORTER) \
+		--timeout $(TIMEOUT) \
+		--bail \
+		--invert \
+		./tests/backend-unit/*.test.coffee \
+		--require coffee-script
 
 test-karma-e2e:
 	./node_modules/karma/bin/karma start tests/config/karma.conf.e2e.js
@@ -18,6 +32,8 @@ test-karma-unit-travis-ci:
 
 #test-karma-travis-ci: test-karma-unit-travis-ci test-karma-e2e-travis-ci
 test-karma-travis-ci: test-karma-unit-travis-ci
+
+test-travis-ci: test-backend-unit test-karma-travis-ci
 
 nodemon:
 	make compile-javascript

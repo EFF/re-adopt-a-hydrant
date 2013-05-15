@@ -19,10 +19,12 @@
   },
   "devDependencies": {
     "chai": "1.6.x",
-    "karma": "0.8.5"
+    "karma": "0.8.5",
+    "mocha": "1.9.x",
+    "sinon": "1.7.x"
   },
   "scripts": {
-    "test": "make test-karma-travis-ci",
+    "test": "make test-travis-ci",
     "start": "foreman start"
   },
   "main": "server/app.coffee"
