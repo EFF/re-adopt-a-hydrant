@@ -6,8 +6,11 @@ proxies = {
 files = [
   ANGULAR_SCENARIO,
   ANGULAR_SCENARIO_ADAPTER,
-  './tests/e2e/*.js'
+  '../e2e/*.*'
 ];
+preprocessors = {
+  '../**/*.coffee': 'coffee'
+};
 exclude = [
   
 ];
