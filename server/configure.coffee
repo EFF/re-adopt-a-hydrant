@@ -1,4 +1,3 @@
-lingua = require 'lingua'
 passport = require 'passport'
 strategyFactory = require './strategyFactory'
 stylus = require 'stylus'
@@ -7,6 +6,7 @@ express = require 'express'
 path = require 'path'
 mongoose = require 'mongoose'
 SessionStore = require('session-mongoose')(express)
+i18n = require 'i18next'
 
 sessionMiddleware = require './middlewares/session_middleware'
 
@@ -17,7 +17,15 @@ module.exports = (app) ->
             .set('compress', true)
             .use(nib())
             .import('nib')
+
     app.configure () ->
+        i18nOptions =
+            fallbackLng: 'fr'
+            resGetPath: './server/locales/__lng__/__ns__.json'
+            detectLngQS: 'lang'
+            cookieName: 'lang'
+        i18n.init i18nOptions
+
         publicDirectory = path.join __dirname, '../public'
 
         app.locals.isDev = (app.settings.env == "development")
@@ -33,7 +41,7 @@ module.exports = (app) ->
         app.use express.bodyParser()
         app.use express.methodOverride()
         app.use express.cookieParser(process.env.SESSION_SECRET)
-        app.use lingua(app, {storageKey: 'lang', defaultLocale: 'en', path: __dirname + '/i18n'})
+
         app.use stylus.middleware({src : publicDirectory, compile : compileStylus})
         app.use express.static(publicDirectory)
         store = new SessionStore(connection : mongoose.connection)
@@ -46,8 +54,14 @@ module.exports = (app) ->
         passport.serializeUser sessionMiddleware.serialize
         passport.deserializeUser sessionMiddleware.deserialize
         app.use passport.session()
-        
+
+        app.use i18n.handle
         app.use app.router
+
+        i18n.registerAppHelper(app)
+            .serveClientScript(app)
+            .serveDynamicResources(app)
+            .serveMissingKeyRoute(app)
 
     app.configure 'development', () ->
         app.use express.logger('dev')
