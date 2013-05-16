@@ -11,29 +11,26 @@ class HydrantInteractor
         params = 
             limit: options.limit || 10
             offset: options.offset || 0
-        @client.path 'POST', "/datasets/#{process.env.DATASET_ID}/search", params, {}, query, @_searchCallback.bind(@, callback)
+        @client.path 'POST', "/datasets/#{process.env.DATASET_ID}/search", params, {}, query, @_handleSearchCallback.bind(@, callback)
 
-    _searchCallback: (callback, err, data) =>
+    _handleSearchCallback: (callback, err, data) =>
         if err
             callback err
         else
-            hydrants = []
-            iterator = (item, next) =>
-                adoptionInteractor.getByHydrantId item._id, (err, result) =>
-                    if err
-                        next err
-                    else
-                        item.adopter = null
-                        if result
-                            item.adopter = result.userId
-                        hydrants.push item
-                        next()
-            async.each data.data, iterator, (err) =>
-                if err
-                    callback err
-                else
-                    callback null, hydrants
+            @_attachAdoptionToHydrants data.data, callback
 
+    _attachAdoptionToHydrants: (hydrants, callback) =>
+        result = []
+        iterator = (hydrant, next) =>
+            adoptionInteractor.getAdoptionByHydrantId hydrant._id, (err, adoption) =>
+                if adoption and adoption.userId
+                    hydrant.adopter = adoption.userId
+                else
+                    hydrant.adopter = null
+                result.push hydrant
+                next()
+        async.each hydrants, iterator, (err) =>
+            callback err, result
 
     _createQuery: (lat, lon) =>
         query =
