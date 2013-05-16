@@ -29,6 +29,10 @@ class StrategyFactory
                 done null, returningUser
             else
                 profile.accessToken = token
+                if profile.provider == 'facebook'
+                    profile.pictureUrl = "http://graph.facebook.com/#{profile.id}/picture"
+                else if profile.provider == 'twitter'
+                    profile.pictureUrl = profile._json.profile_image_url_https
                 newUser = new User profile
                 newUser.save done
 

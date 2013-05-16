@@ -18,19 +18,6 @@ schema =
         type: String
         require: true
         trim: true
-    name:
-        familyName:
-            type: String
-            trim: true
-            index: true
-        givenName:
-            type: String
-            trim: true
-            index: true
-        middleName:
-            type: String
-            trim: true
-            index: true
     gender:
         type: String
     accessToken:
