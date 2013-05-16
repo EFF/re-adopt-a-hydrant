@@ -49,8 +49,8 @@ html(ng-app="reAdoptAHydrant", lang="en")
                     .text(ng-bind="adoptedHydrantsText")
             footer(ng-controller="footerCtrl")
                 .footer-content
-                    a(href='/?lang=fr') Francais
-                    a(href='/?lang=en') English
+                    a(href='/?lang=fr', ng-hide="language == 'fr'") Francais
+                    a(href='/?lang=en', ng-hide="language == 'en'") English
                     .by
                         p=t("devBy")
                             a(href="http://openify.it") Openify.it

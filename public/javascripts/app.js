@@ -16,7 +16,7 @@ reAdoptAHydrant.Application.prototype.start = function() {
 
     app.controller('panelCtrl', ['$scope', 'UserService', '$location', 'HydrantService', reAdoptAHydrant.controllers.Panel]);
     app.controller('mapCtrl', ['$scope', 'HydrantService', 'UserService', reAdoptAHydrant.controllers.Map]);
-    app.controller('footerCtrl', ['$scope', '$cookieStore', reAdoptAHydrant.controllers.Footer]);
+    app.controller('footerCtrl', ['$scope', '$cookies', reAdoptAHydrant.controllers.Footer]);
 }
 
 goog.exportSymbol('reAdoptAHydrant', reAdoptAHydrant);
