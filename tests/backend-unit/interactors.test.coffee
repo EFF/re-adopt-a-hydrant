@@ -66,8 +66,79 @@ describe 'interactors', () ->
 
     describe 'HydrantInteractor', () ->
         beforeEach () ->
+            @adoptionInteractor = require '../../server/interactors/adoption_interactor'
+            @hydrantIdWithAnAdoption = (new ObjectId()).toString()
+            sinon.stub @adoptionInteractor, 'getAdoptionByHydrantId', (hydrantId, callback) =>
+                if hydrantId == @hydrantIdWithAnAdoption
+                    callback null, {userId: @objectIdAsString}
+                else
+                    callback()
+
             @hydrantInteractor = require '../../server/interactors/hydrant_interactor'
 
-        it 'should search'
-        it 'should _createQuery'
-        it 'should do something to refactor cause the code is shit to tests'
+        afterEach () ->
+            @adoptionInteractor.getAdoptionByHydrantId.restore()
+
+        it 'should attach adoption to hydrants', () ->
+            callback = sinon.spy()
+            input = [
+                {_id: @objectIdAsString}
+                {_id: @objectIdAsString}
+                {_id: @hydrantIdWithAnAdoption}
+                {_id: @objectIdAsString}
+            ]
+            expectedOutput = [
+                {_id: @objectIdAsString, adopter: null}
+                {_id: @objectIdAsString, adopter: null}
+                {_id: @hydrantIdWithAnAdoption, adopter: @objectIdAsString}
+                {_id: @objectIdAsString, adopter: null}
+            ]
+            @hydrantInteractor._attachAdoptionToHydrants input, callback
+            assert.isTrue callback.calledOnce, 'callback should be called'
+            assert.isTrue callback.calledWith(null, expectedOutput), 'callback should be called with the right arguments'
+
+        it 'should handle search callback', () ->
+            callback = sinon.spy()
+            fakeData =
+                metadata: {}
+                data:[
+                    {_id: @objectIdAsString}
+                    {_id: @objectIdAsString}
+                    {_id: @objectIdAsString}
+                    {_id: @objectIdAsString}
+                ]
+            sinon.stub @hydrantInteractor, '_attachAdoptionToHydrants', (hydrants, callback) ->
+                callback null, hydrants
+
+            @hydrantInteractor._handleSearchCallback callback, null, fakeData
+
+            assert.isTrue callback.calledOnce
+            assert.isTrue callback.calledWith(null, fakeData.data)
+
+            @hydrantInteractor._attachAdoptionToHydrants.restore()
+            
+
+        it 'should create a query to get the nearest hydrants sorted by distance in a radius of 10km', () ->
+            lat = 46.884106
+            lon = 71.377042
+            expectedOutput = 
+                sort: [
+                    _geo_distance:
+                        location:
+                            lat: lat
+                            lon: lon
+
+                ]
+                query:
+                    filtered:
+                        query:
+                            match_all: {}
+                        filter:
+                            geo_distance:
+                                distance: '10km'
+                                location:
+                                    lat: lat
+                                    lon: lon
+
+            actualOutput = @hydrantInteractor._createQuery lat, lon
+            assert.deepEqual actualOutput, expectedOutput
