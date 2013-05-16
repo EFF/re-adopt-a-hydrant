@@ -55,7 +55,5 @@ class HydrantInteractor
                                 lat: lat
                                 lon: lon
         return query
-    adopt: (userId, hydrantId, callback) ->
-        callback null
 
 module.exports = new HydrantInteractor()

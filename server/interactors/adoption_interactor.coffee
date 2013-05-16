@@ -6,15 +6,15 @@ class AdoptionInteractor
         if userId instanceof String or typeof userId == 'string'
             userId = ObjectId.fromString(userId)
 
-        Adoption = mongoose.connection.model 'Adoption'
-        Adoption.find {'userId': userId}, callback
+        Adoption = mongoose.model 'Adoption'
+        Adoption.find {userId: userId}, callback
 
-    getByHydrantId: (id, callback) =>
-        Adoption = mongoose.connection.model 'Adoption'
-        Adoption.findOne {'hydrantId': id}, callback
+    getAdoptionByHydrantId: (id, callback) =>
+        Adoption = mongoose.model 'Adoption'
+        Adoption.findOne {hydrantId: id}, callback
 
     adoptHydrant: (userId, hydrantId, callback) =>
-        Adoption = mongoose.connection.model 'Adoption'
+        Adoption = mongoose.model 'Adoption'
         adoption = new Adoption()
         adoption.userId = userId
         adoption.hydrantId = hydrantId

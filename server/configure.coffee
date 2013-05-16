@@ -20,7 +20,7 @@ module.exports = (app) ->
 
     app.configure () ->
         i18nOptions =
-            fallbackLng: 'en'
+            fallbackLng: 'fr'
             resGetPath: './server/locales/__lng__/__ns__.json'
             detectLngQS: 'lang'
             cookieName: 'lang'
