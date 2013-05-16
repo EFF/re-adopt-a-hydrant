@@ -32,3 +32,8 @@ This project use the open-data published by the city of Québec in Canada and se
 + Mocha
 + Sinon.JS
 + Chai
+
+## Desing credits
++ [Fire Hydrant](http://thenounproject.com/noun/fire-hydrant/#icon-No508) from The Noun Project
++ [Map marker](http://thenounproject.com/noun/map-marker/#icon-No5552) from The Noun Project
++ [Social login buttons](http://zocial.smcllns.com/ https://github.com/samcollins/css-social-buttons) from Zocial
