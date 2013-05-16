@@ -9,6 +9,7 @@ lib-cov
 
 public/stylesheets/style.css
 public/javascripts/*.js
+public/javascripts/**/*.js
 
 pids
 logs
