@@ -10,7 +10,7 @@ This project use the open-data published by the city of Québec in Canada and se
 ## Features
 + Retrieves the nearest hydrants from the Openify.it api by geo distance and add them to the map.
 + Center the map using the geolocation of the browser. If it's not supported the map is centered in the old town.
-+ A user can login with Facebook or Twitter to adopt one or more hydrants and claim.
++ A user can login with Facebook or Twitter to adopt one or more hydrants and claims resposibility for it.
 
 ## Technologies/Frameworks/Modules/Libraries
 + node.js
