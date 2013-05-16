@@ -10,16 +10,30 @@ This project use the open-data published by the city of Québec in Canada and se
 ## Features
 + Retrieves the nearest hydrants from the Openify.it api by geo distance and add them to the map.
 + Center the map using the geolocation of the browser. If it's not supported the map is centered in the old town.
-+ A user can login with Facebook or Twitter to adopt one or more hydrants and claim.
++ A user can login with Facebook or Twitter to adopt one or more hydrants and claims resposibility for it.
 
-## Technologies
+## Technologies/Frameworks/Modules/Libraries
++ node.js
++ CoffeScript
 + AngularJS
-+ node.js with CoffeScript
-+ Twitter Bootstrap
++ Google Closure Library
++ Google Closure Compiler
++ Stylus
++ Jade
++ i18next
 + Google Maps api v3
-+ MongoDB using mongoose
++ MongoDB
++ Mongoose
 + Facebook OAuth login using passport.js
 + Twitter OAuth login using passport.js
 + Openify.it api
-    + ElasticSearch
-    + There is a lot more but this demo basically use the ElasticSearch capabillities nested inside the Openify.it api.
+    + ElasticSearch, we use the ElasticSearch's capabillities nested inside the Openify.it api.
++ Karma-runner
++ Mocha
++ Sinon.JS
++ Chai
+
+## Desing credits
++ [Fire Hydrant](http://thenounproject.com/noun/fire-hydrant/#icon-No508) from The Noun Project
++ [Map marker](http://thenounproject.com/noun/map-marker/#icon-No5552) from The Noun Project
++ [Social login buttons](http://zocial.smcllns.com/ https://github.com/samcollins/css-social-buttons) from Zocial

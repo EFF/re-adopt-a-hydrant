@@ -1,4 +1,4 @@
 #!/bin/bash
 
 make compile-javascript
-coffee server/app.coffee
+./node_modules/coffee-script/bin/coffee server/app.coffee

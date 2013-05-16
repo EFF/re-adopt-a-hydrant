@@ -50,7 +50,7 @@ module.exports = (app) ->
         
         app.use passport.initialize()
         passport.use strategyFactory.create('facebook')
-        passport.use strategyFactory.create('twiter')
+        passport.use strategyFactory.create('twitter')
         passport.serializeUser sessionMiddleware.serialize
         passport.deserializeUser sessionMiddleware.deserialize
         app.use passport.session()
