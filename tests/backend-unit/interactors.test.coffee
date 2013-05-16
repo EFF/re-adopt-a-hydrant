@@ -31,7 +31,7 @@ describe 'interactors', () ->
 
             assert.isTrue callback.calledOnce, 'callback should be called'
             assert.isTrue @fakeModel.findById.calledOnce, 'findById should be called'
-            assert.isTrue @fakeModel.findById.calledWith(@objectIdAsString, 'id username displayName name', callback), 'findById should be called with the right arguments'
+            assert.isTrue @fakeModel.findById.calledWith(@objectIdAsString, 'id username displayName name pictureUrl', callback), 'findById should be called with the right arguments'
 
     describe 'AdoptionInteractor', () ->
         beforeEach () ->

@@ -23,3 +23,5 @@ reAdoptAHydrant.services.HydrantService = ($rootScope, $http) ->
                 .error((data, status, headers, config) ->
                     callback data
                 )
+
+    return service
