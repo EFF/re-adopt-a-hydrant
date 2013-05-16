@@ -1,8 +1,8 @@
 describe 'reAdoptAHydrant.Application', () ->
     beforeEach () ->
         goog.require 'reAdoptAHydrant.Application'
-        @application = new reAdoptAHydrant.Application()
 
     it 'should have a start function', () ->
-        chai.assert.ok this.application
-        chai.assert.isFunction this.application.start
+        application = new reAdoptAHydrant.Application()
+        chai.assert.ok application
+        chai.assert.isFunction application.start
