@@ -8,7 +8,7 @@ reAdoptAHydrant.controllers.Panel = function($scope, UserService, $location){
     });
 
     $.i18n.init({
-        fallbackLng: 'en',
+        fallbackLng: 'fr',
         resGetPath: 'locales/resources.json?lng=__lng__&ns=__ns__',
         dynamicLoad: true,
         cookieName: 'lang'

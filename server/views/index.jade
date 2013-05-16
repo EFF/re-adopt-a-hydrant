@@ -15,7 +15,7 @@ html(ng-app="reAdoptAHydrant", lang="en")
 
         script(src="//ajax.googleapis.com/ajax/libs/jquery/1.8.3/jquery.min.js")
         script(src="//ajax.googleapis.com/ajax/libs/angularjs/1.0.6/angular.min.js")
-        script(src="http://ajax.googleapis.com/ajax/libs/angularjs/1.0.6/angular-cookies.min.js")
+        script(src="//ajax.googleapis.com/ajax/libs/angularjs/1.0.6/angular-cookies.min.js")
         script(src="//netdna.bootstrapcdn.com/twitter-bootstrap/2.2.2/js/bootstrap.min.js")
         script(src="https://maps.googleapis.com/maps/api/js?key=#{apiKey}&sensor=false")
         script(src='i18next/i18next.js', type='text/javascript')
@@ -49,8 +49,8 @@ html(ng-app="reAdoptAHydrant", lang="en")
                     .text(ng-bind="adoptedHydrantsText")
             footer(ng-controller="footerCtrl")
                 .footer-content
-                    a(href='/?lang=fr', ng-hide="language == 'fr'") Francais
-                    a(href='/?lang=en', ng-hide="language == 'en'") English
+                    a(href='/?lang=fr', ng-show="language.indexOf('fr') == -1") Francais
+                    a(href='/?lang=en', ng-show="language.indexOf('en') == -1") English
                     .by
                         p=t("devBy")
                             a(href="http://openify.it") Openify.it

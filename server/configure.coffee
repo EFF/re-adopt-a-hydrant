@@ -58,7 +58,10 @@ module.exports = (app) ->
         app.use i18n.handle
         app.use app.router
 
-        i18n.registerAppHelper(app).serveClientScript(app).serveDynamicResources(app).serveMissingKeyRoute(app)
+        i18n.registerAppHelper(app)
+            .serveClientScript(app)
+            .serveDynamicResources(app)
+            .serveMissingKeyRoute(app)
 
     app.configure 'development', () ->
         app.use express.logger('dev')
