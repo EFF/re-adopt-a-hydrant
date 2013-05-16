@@ -12,14 +12,23 @@ This project use the open-data published by the city of Québec in Canada and se
 + Center the map using the geolocation of the browser. If it's not supported the map is centered in the old town.
 + A user can login with Facebook or Twitter to adopt one or more hydrants and claim.
 
-## Technologies
+## Technologies/Frameworks/Modules/Libraries
++ node.js
++ CoffeScript
 + AngularJS
-+ node.js with CoffeScript
-+ Twitter Bootstrap
++ Google Closure Library
++ Google Closure Compiler
++ Stylus
++ Jade
++ i18next
 + Google Maps api v3
-+ MongoDB using mongoose
++ MongoDB
++ Mongoose
 + Facebook OAuth login using passport.js
 + Twitter OAuth login using passport.js
 + Openify.it api
-    + ElasticSearch
-    + There is a lot more but this demo basically use the ElasticSearch capabillities nested inside the Openify.it api.
+    + ElasticSearch, we use the ElasticSearch's capabillities nested inside the Openify.it api.
++ Karma-runner
++ Mocha
++ Sinon.JS
++ Chai
