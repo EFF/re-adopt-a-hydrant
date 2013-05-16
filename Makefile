@@ -2,7 +2,8 @@ MOCHA_REPORTER=list
 TIMEOUT=10000
 
 compile-javascript:
-	./compile_javascript.sh
+	./compile_coffee_to_javascript.sh
+	./compile_javascript_with_closure_compiler.sh
 
 test-backend-unit:
 	@NODE_ENV=test \

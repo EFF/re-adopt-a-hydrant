@@ -8,8 +8,7 @@ lib-cov
 *.gz
 
 public/stylesheets/style.css
-public/javascripts/deps.js
-public/javascripts/compiled.js
+public/javascripts/*.js
 
 pids
 logs
