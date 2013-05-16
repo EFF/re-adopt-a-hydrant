@@ -70,4 +70,4 @@ describe 'interactors', () ->
 
         it 'should search'
         it 'should _createQuery'
-        it 'should do something to refactor cause the code is shit'
+        it 'should do something to refactor cause the code is shit to tests'

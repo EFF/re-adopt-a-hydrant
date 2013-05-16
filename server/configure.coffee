@@ -49,7 +49,6 @@ module.exports = (app) ->
         
         app.use app.router
 
-
     app.configure 'development', () ->
         app.use express.logger('dev')
         app.use express.errorHandler({ dumpExceptions: true, showStack: true })
