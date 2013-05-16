@@ -11,6 +11,8 @@ public/stylesheets/style.css
 public/javascripts/*.js
 public/javascripts/**/*.js
 
+tests/frontend-unit/deps.js
+
 pids
 logs
 results
