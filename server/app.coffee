@@ -1,14 +1,12 @@
 path = require 'path'
 express = require 'express'
-fs = require 'fs'
 mongoose = require 'mongoose'
+ModelLoader = require './model_loader'
 
 app = express()
 
 mongoose.connect process.env.MONGODB_URL
-models = fs.readdirSync path.join(__dirname, '/models')
-for model in models
-    require(path.join(path.join(__dirname, '/models'), model))
+ModelLoader.loadSync path.join(__dirname, '/models')
 
 require('./configure')(app)
 require('./routes_map')(app)
