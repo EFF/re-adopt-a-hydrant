@@ -20,6 +20,12 @@ reAdoptAHydrant.Application::start = () ->
     app.controller 'panelCtrl', ['$scope', 'UserService', '$location', 'HydrantService', reAdoptAHydrant.controllers.Panel]
     app.controller 'mapCtrl', ['$scope', 'HydrantService', 'UserService', 'MarkerService', reAdoptAHydrant.controllers.Map]
     app.controller 'footerCtrl', ['$scope', '$cookies', reAdoptAHydrant.controllers.Footer]
+    
+    window.$.i18n.init
+        fallbackLng: 'fr'
+        resGetPath: 'locales/resources.json?lng=__lng__&ns=__ns__'
+        dynamicLoad: true
+        cookieName: 'lang'
 
 goog.exportSymbol 'reAdoptAHydrant', reAdoptAHydrant
 goog.exportSymbol 'reAdoptAHydrant.Application', reAdoptAHydrant.Application

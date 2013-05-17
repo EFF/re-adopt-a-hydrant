@@ -8,12 +8,14 @@ describe 'interactors', () ->
     beforeEach () ->
         @objectId = new ObjectId()
         @objectIdAsString = @objectId.toString()
+        @fakeDocument = 
+            _id: @objectId
         
         @fakeModel = sinon.spy()
-        @fakeModel.findById = sinon.stub().yields()
-        @fakeModel.find = sinon.stub().yields()
-        @fakeModel.findOne = sinon.stub().yields()
-        @fakeModel.prototype.save = sinon.stub().yields()
+        @fakeModel.findById = sinon.stub().yields(null, @fakeDocument)
+        @fakeModel.find = sinon.stub().yields(null, [@fakeDocument])
+        @fakeModel.findOne = sinon.stub().yields(null, @fakeDocument)
+        @fakeModel.prototype.save = sinon.stub().yields(null, @fakeDocument)
 
         sinon.stub mongoose, 'model', () =>
             return @fakeModel
@@ -24,14 +26,25 @@ describe 'interactors', () ->
     describe 'UserInteractor', () ->
         beforeEach () ->
             @userInteractor = require '../../server/interactors/user_interactor'
+            @adoptionInteractor = require '../../server/interactors/adoption_interactor'
+
+            @fakeAdoptions = [{userId: @objectIdAsString, hydrantId: @objectIdAsString}]
+            sinon.stub @adoptionInteractor, 'getUserAdoptions', (id, callback) ->
+                callback null, @fakeAdoptions
+
+        afterEach () ->
+            @adoptionInteractor.getUserAdoptions.restore()
 
         it 'should get a user by id', () ->
             callback = sinon.spy()
             @userInteractor.getById @objectIdAsString, callback
 
+            expectedOutput = @fakeDocument
+            expectedOutput.adoptions = @fakeAdoptions
             assert.isTrue callback.calledOnce, 'callback should be called'
             assert.isTrue @fakeModel.findById.calledOnce, 'findById should be called'
             assert.isTrue @fakeModel.findById.calledWith(@objectIdAsString, 'id username displayName name pictureUrl', callback), 'findById should be called with the right arguments'
+            assert.isTrue callback.calledWith(null, expectedOutput)
 
     describe 'AdoptionInteractor', () ->
         beforeEach () ->
@@ -118,7 +131,7 @@ describe 'interactors', () ->
             @hydrantInteractor._attachAdoptionToHydrants.restore()
             
 
-        it 'should create a query to get the nearest hydrants sorted by distance in a radius of 10km', () ->
+        it 'should create a query to get the nearest hydrants sorted by distance in a radius of 3km', () ->
             lat = 46.884106
             lon = 71.377042
             expectedOutput = 
@@ -135,7 +148,7 @@ describe 'interactors', () ->
                             match_all: {}
                         filter:
                             geo_distance:
-                                distance: '10km'
+                                distance: '3km'
                                 location:
                                     lat: lat
                                     lon: lon
