@@ -32,7 +32,7 @@ reAdoptAHydrant.services.HydrantService = ($rootScope, $http) ->
         callback data
 
     _handleAdoptSuccess = (callback, data) ->
-        $rootScope.$broadcast 'adoption', userId, hydrantId
+        $rootScope.$broadcast 'adoption', data
         callback null, data
 
     _handleAdoptError = (data) ->

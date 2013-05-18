@@ -18,9 +18,6 @@ reAdoptAHydrant.controllers.Panel = ($scope, UserService, $location) ->
 
         $scope.adoptedHydrantsText = window.$.t 'adoptedHydrants', i18nOptions
 
-    $scope.$on 'adoption', (eventArg, userId, hydrantId) ->
-        newAdoption = 
-            userId: userId
-            hydrantId: hydrantId
-
-        $scope.user.adoptions.push newAdoption
+    $scope.$on 'adoption', (eventArg, hydrant) ->
+        $scope.user.adoptions.push hydrant
+        _updateAdoptedHydrantText $scope.user.adoptions.length

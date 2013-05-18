@@ -58,7 +58,6 @@ reAdoptAHydrant.services.Marker = (UserService, HydrantService) =>
                 else
                     content = "<img class='pull-left' src='#{user.pictureUrl}'><p>Adopted by <strong>#{user.displayName}</strong>"
                     infowindow = new google.maps.InfoWindow(content: content)
-                    console.log @
                     infowindow.open @.map, @
 
         else
@@ -66,6 +65,7 @@ reAdoptAHydrant.services.Marker = (UserService, HydrantService) =>
                 if user
                     confirmation = confirm "Do you want to adopt this hydrant?"
                     if confirmation
+                        console.log 'confirm', @
                         HydrantService.adopt user._id, @._id, (err, callback) =>
                             if err
                                 console.log err
