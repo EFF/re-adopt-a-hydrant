@@ -47,7 +47,7 @@ class HydrantInteractor
                         match_all: {}
                     filter:
                         geo_distance:
-                            distance: '10km'
+                            distance: '3km'
                             location:
                                 lat: lat
                                 lon: lon
