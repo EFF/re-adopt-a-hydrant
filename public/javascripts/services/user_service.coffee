@@ -12,7 +12,6 @@ reAdoptAHydrant.services.UserService = ($http) ->
             .error(_handleGetUserError.bind(@, callback))
 
     _handleGetUserSuccess = (callback, user) ->
-        console.log user
         callback null, user
 
     _handleGetUserError = (callback, err) ->
