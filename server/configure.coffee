@@ -37,7 +37,7 @@ module.exports = (app) ->
         app.set 'view engine', 'jade'
 
         app.disable 'x-powered-by' 
-        app.use express.favicon()
+        app.use express.favicon("#{publicDirectory}/images/favicon32.png")
         app.use express.bodyParser()
         app.use express.methodOverride()
         app.use express.cookieParser(process.env.SESSION_SECRET)
