@@ -5,14 +5,6 @@ sinon = require 'sinon'
 mongoose = require 'mongoose'
 ObjectId = mongoose.Types.ObjectId
 
-containsSameMembers = (superset, subset) ->
-    match = true
-    for key of subset
-        console.log key
-        if superset[key] != subset[key]
-            match = false
-    return match
-
 describe 'interactors', () =>
     beforeEach () =>
         @fixtures = require './fixtures'
