@@ -31,4 +31,15 @@ user2.accessToken = 'CAACp16tePyQBAGwhfvE7xqdDjSOQZBuWL2CkIr4VUrEfQ22XTGbfYxup8D
 user2.pictureUrl = 'http://graph.facebook.com/100001798921934/picture'
 fixtures.User.push user2
 
+adoption1 = new Adoption()
+adoption1.hydrantId = 'IZkE04heQhalDjpo9R6tdw'
+adoption1.userId = user1._id
+fixtures.Adoption.push adoption1
+
+adoption2 = new Adoption()
+adoption2.hydrantId = 'rS4urO6PSRSYhg_tuRKL4Q'
+adoption2.userId = user1._id
+
+fixtures.Adoption.push adoption2
+
 module.exports = fixtures
