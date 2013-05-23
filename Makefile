@@ -40,4 +40,4 @@ nodemon:
 	make compile-javascript
 	foreman start -f Procfile.dev -p 5000
 
-.PHONY: nodemon compile-javascript test-karma-unit test-karma-e2e
+.PHONY: nodemon compile-javascript test-karma-unit test-karma-e2e test-mangouste
