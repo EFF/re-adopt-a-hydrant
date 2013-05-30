@@ -25,7 +25,7 @@ test-karma-e2e-travis-ci:
 
 test-karma-unit:
 	make compile-javascript
-	./node_modules/karma/bin/karma start tests/config/karma.conf.unit.js
+	./node_modules/.bin/karma start tests/config/karma.conf.unit.js
 
 test-karma-unit-travis-ci:
 	make compile-javascript
