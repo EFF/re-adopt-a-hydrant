@@ -1,7 +1,6 @@
 mongoose = require 'mongoose'
-timestamp = require 'mongoose-troop/lib/timestamp'
 
-schema = 
+schema =
     provider:
         type: String
         trim: true
@@ -26,7 +25,5 @@ schema =
         type: String
 
 UserSchema = new mongoose.Schema schema
-
-UserSchema.plugin timestamp , {useVirtual: false}
 
 mongoose.model 'User', UserSchema
