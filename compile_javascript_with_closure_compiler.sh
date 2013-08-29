@@ -1,9 +1,9 @@
 #!/bin/bash
 
-COMPILED_FILENAME=./public/javascripts/compiled.js
-DEPENDENCIES_FILENAME=./public/javascripts/deps.js
-DEPENDENCIES_FILENAME_TESTS=./tests/frontend-unit/deps.js
-COMPILER_FILENAME=./vendors/closure-compiler/compiler.jar
+COMPILED_FILENAME=public/javascripts/compiled.js
+DEPENDENCIES_FILENAME=public/javascripts/deps.js
+DEPENDENCIES_FILENAME_TESTS=tests/frontend-unit/deps.js
+COMPILER_FILENAME=vendors/closure-compiler/compiler.jar
 NAMESPACE="reAdoptAHydrant.Application"
 COMPILATION_LEVEL=SIMPLE_OPTIMIZATIONS
 
