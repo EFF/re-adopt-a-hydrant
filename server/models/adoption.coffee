@@ -1,8 +1,7 @@
 mongoose = require 'mongoose'
-timestamp = require 'mongoose-troop/lib/timestamp'
 
-schema = 
-    userId: 
+schema =
+    userId:
         type: mongoose.Schema.Types.ObjectId
         ref: 'User'
         required: true
@@ -26,7 +25,5 @@ schema =
         ]
 
 AdoptionSchema = new mongoose.Schema schema
-
-AdoptionSchema.plugin timestamp , {useVirtual: false}
 
 mongoose.model 'Adoption', AdoptionSchema

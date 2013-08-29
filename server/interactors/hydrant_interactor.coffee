@@ -1,19 +1,22 @@
 async = require 'async'
-OpenifyItClient = require('nodejs-api-client').OpenifyItClient
+OpenifyItClient = require('nodejs-api-client')
 adoptionInteractor = require './adoption_interactor'
 
 class HydrantInteractor
     constructor: () ->
-        @client = new OpenifyItClient(process.env.API_HOST || 'api-staging.openify.it', process.env.API_PORT || 80, process.env.API_KEY, process.env.SECRET_KEY)
+        @client = new OpenifyItClient(process.env.API_HOST || 'api.openify.it', process.env.API_PORT || 80, process.env.API_KEY, process.env.SECRET_KEY)
 
     search: (options, callback) =>
         query = @_createQuery options.lat, options.lon
-        params = 
-            limit: options.limit || 10
-            offset: options.offset || 0
-        @client.path 'POST', "/datasets/#{process.env.DATASET_ID}/search", params, {}, query, @_handleSearchCallback.bind(@, callback)
+        params =
+            qs:
+                limit: options.limit || 10
+                offset: options.offset || 0
+            json:
+                query
+        @client.path 'GET', "/v0/datasets/#{process.env.DATASET_ID}/data", params, @_handleSearchCallback.bind(@, callback)
 
-    _handleSearchCallback: (callback, err, data) =>
+    _handleSearchCallback: (callback, err, res, data) =>
         if err
             callback err
         else
@@ -34,13 +37,6 @@ class HydrantInteractor
 
     _createQuery: (lat, lon) =>
         query =
-            sort: [
-                _geo_distance:
-                    location:
-                        lat: lat
-                        lon: lon
-
-            ]
             query:
                 filtered:
                     query:
@@ -48,9 +44,16 @@ class HydrantInteractor
                     filter:
                         geo_distance:
                             distance: '3km'
-                            location:
+                            geo:
                                 lat: lat
                                 lon: lon
+                sort: [
+                    _geo_distance:
+                        geo:
+                            lat: lat
+                            lon: lon
+
+                ]
         return query
 
 module.exports = new HydrantInteractor()

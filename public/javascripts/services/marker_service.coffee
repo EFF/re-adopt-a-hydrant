@@ -12,25 +12,25 @@ reAdoptAHydrant.services.Marker = (UserService, HydrantService) =>
         icon =
             anchor : new google.maps.Point(16,39)
             size: new google.maps.Size(33,39)
-            url: '../../images/normalHydrantMarker.png'
+            url: '/images/normalHydrantMarker.png'
 
-        shadow = 
+        shadow =
             anchor : new google.maps.Point(6,24)
             size: new google.maps.Size(40,24)
-            url: '../../images/markerShadow.png'
-        
+            url: '/images/markerShadow.png'
+
         return _createMarker map, hydrant, icon, shadow
 
     _createAdoptedMarker = (map, hydrant) =>
         icon =
             anchor : new google.maps.Point(21,39),
             size: new google.maps.Size(42,39),
-            url: '../../images/adoptedHydrantMarker.png'
+            url: '/images/adoptedHydrantMarker.png'
 
         shadow =
             anchor : new google.maps.Point(6,24)
             size: new google.maps.Size(40,24)
-            url: '../../images/markerShadow.png'
+            url: '/images/markerShadow.png'
 
         return _createMarker map, hydrant, icon, shadow
 
@@ -38,7 +38,7 @@ reAdoptAHydrant.services.Marker = (UserService, HydrantService) =>
         markerOptions =
             map: map
             animation: google.maps.Animation.DROP
-            position: new google.maps.LatLng(hydrant._source.location.lat, hydrant._source.location.lon)
+            position: new google.maps.LatLng(hydrant._source.geo.lat, hydrant._source.geo.lon)
             icon: icon
             shadow : shadow
 

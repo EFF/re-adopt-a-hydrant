@@ -28,12 +28,12 @@ html(ng-app="reAdoptAHydrant", lang="en")
             goog.require('reAdoptAHydrant.Application');
         script(type='text/javascript')
             var app = new reAdoptAHydrant.Application();
-            app.start();        
+            app.start();
 
     body
         .panel(ng-controller="panelCtrl").pull-left
             .logo
-                img(src="images/logo.png", alt="logo re-Adopt-A-Hydrant")
+                img(src="/images/logo.png", alt="logo re-Adopt-A-Hydrant")
             .descriptionContainer
                 .description=t("description")
             .login-form(ng-hide="user")
