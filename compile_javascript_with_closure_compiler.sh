@@ -29,5 +29,4 @@ if [ "$NODE_ENV" == "production" ]; then
 else
     echo "writes dependencies..."
     ./vendors/closure-library/closure/bin/build/depswriter.py --root_with_prefix="./public ../../../../" > $DEPENDENCIES_FILENAME
-    ./vendors/closure-library/closure/bin/build/depswriter.py --root_with_prefix="./public ../../../../../" > $DEPENDENCIES_FILENAME_TESTS
 fi
