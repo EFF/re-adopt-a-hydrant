@@ -10,7 +10,7 @@ class HydrantInteractor
         query = @_createQuery options.lat, options.lon
         params =
             qs:
-                limit: options.limit || 100
+                limit: options.limit || 30
                 offset: options.offset || 0
             json:
                 query
