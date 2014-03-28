@@ -1,8 +1,5 @@
 ![reAdoptAHydrant logo](https://raw.github.com/OpenifyIt/reAdoptAHydrant/master/public/images/logo.png "reAdoptAHydrant")
 
-[![Dependency Status](https://gemnasium.com/OpenifyIt/reAdoptAHydrant.png)](https://gemnasium.com/OpenifyIt/reAdoptAHydrant)
-[![Build Status](https://travis-ci.org/OpenifyIt/reAdoptAHydrant.png)](https://travis-ci.org/OpenifyIt/reAdoptAHydrant)
-
 Try live demo http://readoptahydrant.openify.it
 
 This project is a remake of the [Adopt-a-Hydrant](http://example.com/) built in Boston by the city of Boston. For a better description [take a look here](http://commons.codeforamerica.org/apps/adopt-hydrant "Adopt-a-Hydrant description")
@@ -32,7 +29,7 @@ You can see a demo screencast [here](http://frxpoulin.wistia.com/medias/urbgoa1x
 + Facebook OAuth login using passport.js
 + Twitter OAuth login using passport.js
 + Openify.it api
-    + ElasticSearch, we use the ElasticSearch's capabillities nested inside the Openify.it api.
+    + ElasticSearch, we use the ElasticSearch's capabillities nested inside the openify.it api.
 + Karma-runner
 + Mocha
 + Sinon.JS
