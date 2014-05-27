@@ -6,9 +6,9 @@ lib-cov
 *.out
 *.pid
 *.gz
-
+public/**/*.js
 public/stylesheets/style.css
-public/javascripts/*.js
+
 
 tests/frontend-unit/deps.js
 

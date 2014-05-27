@@ -6,10 +6,9 @@ class HydrantInteractor
     search: (options, callback) =>
         query = @_createQuery options.lat, options.lon
         options =
-            method: 'POST',
-            url: "http://#{process.env.OPENIFY_API_URL}:#{process.env.OPENIFY_API_PORT}/v0/quebec-city/fire-hydrants",
-            qs: query,
-            json: true
+            method: 'POST'
+            url: "http://#{process.env.OPENIFY_API_URL}:#{process.env.OPENIFY_API_PORT}/#{process.env.OPENIFY_API_VERSION}/#{process.env.INDEX}/#{process.env.TYPE}"
+            json: query
 
         request(options, @_handleSearchCallback.bind(@, callback))
 
@@ -41,17 +40,19 @@ class HydrantInteractor
                         match_all: {}
                     filter:
                         geo_distance:
-                            distance: '3km'
+                            distance: '2km',
                             geo:
-                                lat: lat
-                                lon: lon
-                sort: [
-                    _geo_distance:
-                        geo:
-                            lat: lat
-                            lon: lon
+                                lat: lat,
+                                lon : lon
+            sort: [
+                _geo_distance:
+                    geo:
+                        lat: lat
+                        lon: lon
+                    order: 'asc'
+                    unit: 'km'
+            ]
 
-                ]
         return query
 
 module.exports = new HydrantInteractor()
