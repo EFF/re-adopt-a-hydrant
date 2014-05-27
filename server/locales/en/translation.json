@@ -6,5 +6,5 @@
     "adoptedHydrants_zero" : "You haven't adopted any fire hydrants yet, click on a orange hydrant to adopt your first one!",
     "adoptedHydrants_many" : "You have adopted one fire hydrant, adopt another one now!",
     "adoptedHydrants_many_plural" : "You have adopted __count__ fire hydrants, continue and adopt another one now!",
-    "devBy" : "Developed by your friends @ "
+    "devBy" : "Developed by"
 }

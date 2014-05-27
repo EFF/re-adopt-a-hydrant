@@ -30,10 +30,9 @@ html(ng-app="reAdoptAHydrant", lang="en")
                     .text(ng-bind="adoptedHydrantsText")
             footer
                 .footer-content
-                    p.by debelopped by
-                    //- .by
-                    //-     p=t("devBy")
-                    //-         a(href="http://openify.it") Openify.it
+                    p.by=t("devBy")
+                a(href="http://www.openify.it")
+                    img(src='/images/openify_icon_white_small.png')
         .map-container(ng-controller="mapCtrl")
             #map-canvas
         
