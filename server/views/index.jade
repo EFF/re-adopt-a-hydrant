@@ -21,8 +21,8 @@ html(ng-app="reAdoptAHydrant", lang="en")
             .descriptionContainer
                 .description=t("description")
             .login-form(ng-hide="user")
-                a.zocial.facebook(href="/auth/facebook")=t("fbLogin")
-                a.zocial.twitter(href="/auth/twitter")=t("twitterLogin")
+                a.zocial.facebook(href="/auth/facebook")=t("login")
+                a.zocial.twitter(href="/auth/twitter")=t("login")
             .userInfoContainer(ng-show="user")
                 .userInfo
                     .text=t("hi")
