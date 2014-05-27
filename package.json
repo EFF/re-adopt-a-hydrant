@@ -14,14 +14,14 @@
     "i18next": "1.6.x",
     "nodejs-api-client": "~0.3.1",
     "session-mongoose": "~0.2.3",
-    "mongoose": "~3.6.18"
+    "mongoose": "~3.6.18",
+    "request": "~2.36.0"
   },
   "devDependencies": {
     "chai": "1.6.x",
     "karma": "0.8.5",
     "mocha": "1.9.x",
-    "sinon": "1.7.x",
-    "mangouste": "0.0.x"
+    "sinon": "1.7.x"
   },
   "scripts": {
     "test": "make test-travis-ci",

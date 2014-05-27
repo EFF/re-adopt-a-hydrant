@@ -1,26 +1,24 @@
 async = require 'async'
-OpenifyItClient = require('nodejs-api-client')
+request = require 'request'
 adoptionInteractor = require './adoption_interactor'
 
 class HydrantInteractor
-    constructor: () ->
-        @client = new OpenifyItClient(process.env.API_HOST || 'api.openify.it', process.env.API_PORT || 80, process.env.API_KEY, process.env.SECRET_KEY)
-
     search: (options, callback) =>
         query = @_createQuery options.lat, options.lon
-        params =
-            qs:
-                limit: options.limit || 30
-                offset: options.offset || 0
-            json:
-                query
-        @client.path 'GET', "/v0/datasets/#{process.env.DATASET_ID}/data", params, @_handleSearchCallback.bind(@, callback)
+        options =
+            method: 'POST',
+            url: "http://#{process.env.OPENIFY_API_URL}:#{process.env.OPENIFY_API_PORT}/v0/quebec-city/fire-hydrants",
+            qs: query,
+            json: true
+
+        request(options, @_handleSearchCallback.bind(@, callback))
 
     _handleSearchCallback: (callback, err, res, data) =>
+        hydrants = data.hits.hits
         if err
             callback err
         else
-            @_attachAdoptionToHydrants data.data, callback
+            @_attachAdoptionToHydrants hydrants, callback
 
     _attachAdoptionToHydrants: (hydrants, callback) =>
         result = []
