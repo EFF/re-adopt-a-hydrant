@@ -12,12 +12,36 @@ html(ng-app="reAdoptAHydrant", lang="en")
         link(rel="stylesheet", href="/stylesheets/style.css")
         link(href="/stylesheets/zocial.css", rel="stylesheet")
 
+    body
+        .panel(ng-controller="panelCtrl").pull-left
+            a.language(href='/?lang=fr', ng-show="language.indexOf('fr') == -1") Fr
+            a.language(href='/?lang=en', ng-show="language.indexOf('en') == -1") En
+            .logo
+                img(src="/images/logov2.png", alt="logo re-Adopt-A-Hydrant")
+            .descriptionContainer
+                .description=t("description")
+            .login-form(ng-hide="user")
+                a.zocial.facebook(href="/auth/facebook")=t("fbLogin")
+                a.zocial.twitter(href="/auth/twitter")=t("twitterLogin")
+            .userInfoContainer(ng-show="user")
+                .userInfo
+                    .text=t("hi")
+                    h3 {{user.displayName}}!
+                    .text(ng-bind="adoptedHydrantsText")
+            footer
+                .footer-content
+                    p.by debelopped by
+                    //- .by
+                    //-     p=t("devBy")
+                    //-         a(href="http://openify.it") Openify.it
+        .map-container(ng-controller="mapCtrl")
+            #map-canvas
+        
         script(src="//ajax.googleapis.com/ajax/libs/jquery/1.8.3/jquery.min.js")
         script(src="//ajax.googleapis.com/ajax/libs/angularjs/1.0.6/angular.min.js")
         script(src="//ajax.googleapis.com/ajax/libs/angularjs/1.0.6/angular-cookies.min.js")
         script(src="https://maps.googleapis.com/maps/api/js?key=#{apiKey}&sensor=false")
         script(src='i18next/i18next.js', type='text/javascript')
-
         if isDev
             script(type='text/javascript', src='/closure/base.js')
             script(type='text/javascript', src='/javascripts/deps.js')
@@ -29,36 +53,6 @@ html(ng-app="reAdoptAHydrant", lang="en")
         script(type='text/javascript')
             var app = new reAdoptAHydrant.Application();
             app.start();
-
-    body
-        .panel(ng-controller="panelCtrl").pull-left
-            .logo
-                img(src="/images/logo.png", alt="logo re-Adopt-A-Hydrant")
-            .descriptionContainer
-                .description=t("description")
-            .login-form(ng-hide="user")
-                a.zocial.facebook(href="/auth/facebook")=t("fbLogin")
-                .splitter or
-                a.zocial.twitter(href="/auth/twitter")=t("twitterLogin")
-            .userInfoContainer(ng-show="user")
-                .userInfo
-                    .text=t("hi")
-                    h3 {{user.displayName}}!
-                    .text(ng-bind="adoptedHydrantsText")
-            footer(ng-controller="footerCtrl")
-                .footer-content
-                    a(href='/?lang=fr', ng-show="language.indexOf('fr') == -1") Francais
-                    a(href='/?lang=en', ng-show="language.indexOf('en') == -1") English
-                    .by
-                        p=t("devBy")
-                            a(href="http://openify.it") Openify.it
-                    .socialLinks
-                        a.facebook(href="https://www.facebook.com/OpenifyIt")
-                        a.twitter(href="https://twitter.com/OpenifyIt")
-                        a.github(href="https://github.com/OpenifyIt")
-        .map-container(ng-controller="mapCtrl")
-            #map-canvas
-
         script
             var _gaq = _gaq || [];
             _gaq.push(['_setAccount', 'UA-37980098-1']);

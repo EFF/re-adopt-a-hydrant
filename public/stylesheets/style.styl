@@ -1,38 +1,45 @@
 lightGreen = #86bb5d
 lightGrey = #777
 orange = #FF7F00
-body
+darkblue = #24274c
+border_style = solid 1px rgba(0,0,0,0.2)
+
+body, html
     margin 0
     font-family arial
+    height 100%
+.language
+    position absolute
+    top 10px
+    left 5%
+    color lightGrey
+    text-decoration none
 .pull-left
     float left
 .panel
+    position relative
     height 100%
     width 20%
+    border-right border_style
     .logo
         text-align center
-        margin 20px 0
+        margin-top 1em
         img
             width 90%
     .descriptionContainer
         width 100%
-        background-color lightGreen
         padding 10px 0
-        margin-bottom 20px
         .description
             font-size 14px
             letter-spacing 1px
-            width 80%
+            width 90%
             margin auto
             text-align justify
-            color white
+            color lightGrey
     .login-form
-        text-align center
-        font-size 14px
-        .splitter
-            margin 10px 0
+        font-size 1em
         a
-            width 80%
+            width 100%
     .userInfoContainer
         width 100%
         .userInfo
@@ -46,20 +53,33 @@ body
     footer
         position absolute
         bottom 0
-        background-color lightGrey
+        width 100%
+        height 6em
         .footer-content
             margin auto
             width 95%
-            a
-                color lightGreen
-                transition 0.3s all ease
-                cursor pointer
-                text-decoration none
-            a:hover
-                color orange
+            text-align center
+            position relative
             .by
-                margin 10px 0px
-                color white
+                display inline-block
+                position relative
+                max-width 50%
+                color lightGrey
+                font-size 0.8em
+                line-height 1em
+                text-transform capitalize
+                &:before, &:after
+                    content: "";
+                    position: absolute;
+                    border-top: border_style
+                    top: 0.5em;
+                    width: 50%;
+                &:before
+                    right: 100%;
+                    margin-right: 5px;
+                &:after
+                    left: 100%;
+                    margin-left: 5px;
             .socialLinks
                 margin 10px 0px
                 .facebook

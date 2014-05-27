@@ -1,8 +1,9 @@
 goog.provide 'reAdoptAHydrant.controllers.Panel'
 
-reAdoptAHydrant.controllers.Panel = ($scope, UserService, $location) ->
+reAdoptAHydrant.controllers.Panel = ($scope, UserService, $location, $cookies) ->
     $scope.user = null
     $scope.adoptedHydrantsText = ''
+    $scope.language = $cookies.lang
 
     UserService.getCurrentUser (err, user) ->
         $scope.user = user
