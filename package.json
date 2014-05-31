@@ -21,7 +21,8 @@
     "chai": "1.6.x",
     "karma": "0.8.5",
     "mocha": "1.9.x",
-    "sinon": "1.7.x"
+    "sinon": "1.7.x",
+    "nodemon": "~1.1.1"
   },
   "scripts": {
     "test": "make test-travis-ci",

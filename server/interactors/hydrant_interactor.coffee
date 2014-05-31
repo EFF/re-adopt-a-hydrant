@@ -5,9 +5,10 @@ adoptionInteractor = require './adoption_interactor'
 class HydrantInteractor
     search: (options, callback) =>
         query = @_createQuery options.lat, options.lon
+        url = "http://#{process.env.OPENIFY_API_URL}:#{process.env.OPENIFY_API_PORT}/#{process.env.OPENIFY_API_VERSION}/#{process.env.INDEX}/#{process.env.TYPE}"
         options =
             method: 'POST'
-            url: "http://#{process.env.OPENIFY_API_URL}:#{process.env.OPENIFY_API_PORT}/#{process.env.OPENIFY_API_VERSION}/#{process.env.INDEX}/#{process.env.TYPE}"
+            url: url
             json: query
 
         request(options, @_handleSearchCallback.bind(@, callback))
@@ -52,6 +53,7 @@ class HydrantInteractor
                     order: 'asc'
                     unit: 'km'
             ]
+            size: 30
 
         return query
 
