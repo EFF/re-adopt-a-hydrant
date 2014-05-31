@@ -9,7 +9,7 @@ reAdoptAHydrant.controllers.Map = ($scope, HydrantService, UserService, MarkerSe
         options =
             center: new google.maps.LatLng(46.813953, -71.207972)
             replace: true
-            zoom: 15
+            zoom: 16
             mapTypeId: google.maps.MapTypeId.ROADMAP
 
         map = new google.maps.Map(document.getElementById("map-canvas"), options)

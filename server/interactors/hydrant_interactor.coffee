@@ -53,7 +53,6 @@ class HydrantInteractor
                     order: 'asc'
                     unit: 'km'
             ]
-            size: 30
 
         return query
 
