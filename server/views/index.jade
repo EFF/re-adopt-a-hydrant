@@ -1,9 +1,9 @@
-doctype 5
-html(ng-app="reAdoptAHydrant", lang="en")
+doctype html
+html(ng-app="reAdoptAHydrant")
     head
-        meta charset="utf-8"
+        meta(charset="utf-8")
         meta(http-equiv="X-UA-Compatible", content="IE=edge,chrome=1")
-        title re-Adopt-A-Hydrant
+        title re-adopt-a-hydrant
         meta(name="viewport", content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0")
 
         // [if lt IE 9]>
@@ -47,12 +47,12 @@ html(ng-app="reAdoptAHydrant", lang="en")
         else
             script(type='text/javascript', src='/javascripts/compiled.js')
 
-        script(type='text/javascript')
+        script(type='text/javascript').
             goog.require('reAdoptAHydrant.Application');
-        script(type='text/javascript')
+        script(type='text/javascript').
             var app = new reAdoptAHydrant.Application();
             app.start();
-        script
+        script.
             var _gaq = _gaq || [];
             _gaq.push(['_setAccount', 'UA-37980098-1']);
             _gaq.push(['_setDomainName', 'openify.it']);

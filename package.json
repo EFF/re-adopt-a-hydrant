@@ -1,35 +1,27 @@
 {
-  "name": "reAdoptAHydrant",
+  "name": "re-adopt-a-hydrant",
+  "private": true,
   "version": "0.1.0",
   "dependencies": {
     "express": "3.2.x",
-    "jade": "0.30.x",
-    "async": "0.2.x",
-    "stylus": "0.32.x",
-    "nib": "0.9.x",
-    "passport": "0.1.x",
-    "passport-facebook": "0.1.x",
-    "passport-twitter": "0.1.x",
-    "i18next": "1.6.x",
-    "nodejs-api-client": "~0.3.1",
     "session-mongoose": "~0.2.3",
     "mongoose": "~3.6.18",
     "request": "~2.36.0",
-    "coffee-script": "~1.7.1"
+    "coffee-script": "~1.7.1",
+    "async": "~0.9.0",
+    "passport": "~0.2.0",
+    "i18next": "~1.7.4",
+    "passport-facebook": "~1.0.3",
+    "passport-twitter": "~1.0.2",
+    "nib": "~1.0.2",
+    "stylus": "~0.45.1",
+    "jade": "~1.3.1"
   },
   "devDependencies": {
-    "chai": "1.6.x",
-    "karma": "0.8.5",
-    "mocha": "1.9.x",
-    "sinon": "1.7.x",
     "nodemon": "~1.1.1"
   },
   "scripts": {
     "start": "foreman start"
   },
-  "main": "server/index.js",
-  "engines": {
-    "node": "0.8.x",
-    "npm": "1.2.x"
-  }
+  "main": "server/index.js"
 }
