@@ -1,10 +1,9 @@
 {
     "description" : "En adoptant une borne fontaine, vous vous portez volontaire pour en prendre soin et donnez toute l'amour qu'une borne fontaine mérite! Vous aurez comme responsabilité de déblayer à la suite d'une tempête de neige et d'informer les authorités lors d'un quelconque bris.",
-    "fbLogin" : "Connexion via Facebook",
-    "twitterLogin" : "Connexion via Twitter",
+    "login" : "Connexion",
     "hi" : "Bonjour,",
     "adoptedHydrants_zero" : "Vous n'avez pas encore adopté de borne-fontaine. Cliquez sur la borne-fontaine de votre choix pour l'adopter.",
     "adoptedHydrants_many" : "Une borne-fontaine est sous votre responsabilité, adoptez en une de plus maintenant et soyez un bon citoyen!",
     "adoptedHydrants_many_plural" : "Vous êtes un bon citoyen, vous prenez soins de __count__ bornes-fontaines! ",
-    "devBy" : "Développé par vos amis chez "
+    "devBy" : "Développé par"
 }
