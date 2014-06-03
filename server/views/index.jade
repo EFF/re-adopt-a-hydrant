@@ -8,6 +8,11 @@ html(ng-app="reAdoptAHydrant")
 
         // [if lt IE 9]>
             script(src="//html5shim.googlecode.com/svn/trunk/html5.js")
+        != "<!--[if lt IE 9]>"
+            script(type="text/javascript").
+                alert("Votre navigateur est désuet. Nous vous recommandons Google Chrome.");
+                window.location.href = "https://www.google.com/chrome/browser/";
+        != "<!-- <![endif]-->"
 
         link(rel="stylesheet", href="/stylesheets/style.css")
         link(href="/stylesheets/zocial.css", rel="stylesheet")
